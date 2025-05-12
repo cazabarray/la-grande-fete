@@ -13,6 +13,13 @@
     </head>
     <body>
         <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_support') }}">Support</a></li>
+                </ul>
+            </nav>
+
             {% if app.user %}
                 <nav>
                     <ul>

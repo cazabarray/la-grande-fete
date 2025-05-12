@@ -19,10 +19,13 @@
                     <li><a href="{{ path('app_support') }}">Support</a></li>
                 </ul>
             </nav>
-
+            
             {% if app.user %}
                 <nav>
                     <ul>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('app_logout') }}">Accès administrateur</a></li>
+                        {% endif %}
                         <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                     </ul>
                 </nav>

@@ -5,17 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TicketRepository;
-use Symfony\Component\Security\Core\Security;
 use App\Entity\Ticket;
 use App\Form\TicketForm;
 
 final class SupportController extends AbstractController
 {
     #[Route('/support', name: 'app_support')]
-    public function index(Request $request, EntityManagerInterface $em, TicketRepository $repo, Security $security): Response
+    public function index(Security $security, Request $request, EntityManagerInterface $em, TicketRepository $repo): Response
     {
         $user = $security->getUser();
 
@@ -41,6 +41,32 @@ final class SupportController extends AbstractController
         return $this->render('support/index.html.twig', [
             'form' => $form->createView(),
             'tickets' => $tickets,
+        ]);
+    }
+
+    #[Route('/support/{id}', name: 'app_support_ticket')]
+    public function edit(Ticket $ticket, Security $security, Request $request, EntityManagerInterface $em): Response
+    {
+        if ($ticket->getUser() !== $security->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        if ($ticket->getStatut() !== null) {
+            return $this->redirectToRoute('app_support');
+        }
+
+        $form = $this->createForm(TicketForm::class, $ticket);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'Ticket modifié avec succès.');
+            return $this->redirectToRoute('app_support');
+        }
+
+        return $this->render('support/modification.html.twig', [
+            'form' => $form->createView(),
+            'ticket' => $ticket,
         ]);
     }
 }

@@ -17,6 +17,7 @@
                 {% if ticket.statut %}
                     <p>Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
                 {% else %}
+                    <a href="{{ path('app_support_ticket', {id: ticket.id}) }}">Modifier le ticket</a>
                     <p>En attente d'une réponse</p>
                 {% endif %}
             </li>

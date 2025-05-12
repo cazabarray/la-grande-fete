@@ -1,5 +1,5 @@
-• Faire en sorte que les utilisateurs puissent modifier leurs tickets
-• Créer le rôle administrateur et créer un tableau de bord pour gérer les utilisateurs et les tickets
+• Comprendre la raison de la deconnexion lorsque que je vais sur l'accès administrateur
+• Créer la gestion des utilisateurs et des tickets
 
 • Se pencher sur les messages d'erreur | Connexion & inscription
 • Configurer la vérification d'email | Inscription

@@ -10,9 +10,9 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\AdministrateurutilisateurForm;
-use App\Form\AdministrateurticketForm;
 use App\Repository\TicketRepository;
 use App\Entity\Ticket;
+use App\Form\AdministrateurticketForm;
 
 final class AdministrateurController extends AbstractController
 {
@@ -25,7 +25,7 @@ final class AdministrateurController extends AbstractController
     }
 
     #[Route('/administrateur/utilisateurs', name: 'app_administrateur_utilisateurs')]
-    public function users(UserRepository $userRepo): Response
+    public function utilisateurs(UserRepository $userRepo): Response
     {
         $users = $userRepo->findAll();
 
@@ -35,7 +35,7 @@ final class AdministrateurController extends AbstractController
     }
 
     #[Route('/administrateur/utilisateur/{id}/modification', name: 'app_administrateur_utilisateur_modification')]
-    public function editUser(User $user, Request $request, EntityManagerInterface $em): Response
+    public function modificationUtilisateur(User $user, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(AdministrateurutilisateurForm::class, $user);
         $form->handleRequest($request);
@@ -53,7 +53,7 @@ final class AdministrateurController extends AbstractController
     }
 
     #[Route('/administrateur/utilisateur/{id}/suppression', name: 'app_administrateur_utilisateur_suppression', methods: ['POST'])]
-    public function deleteUser(User $user,Request $request, EntityManagerInterface $em): Response
+    public function suppressionUtilisateur(User $user,Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete-user-' . $user->getId(), $request->request->get('_token'))) {
             $em->remove($user);
@@ -74,26 +74,18 @@ final class AdministrateurController extends AbstractController
         ]);
     }
 
-    #[Route('/administrateur/ticket/{id}/modification', name: 'app_administrateur_ticket_modification')]
-    public function editTicket(Ticket $ticket, Request $request, EntityManagerInterface $em): Response
+    #[Route('/admin/ticket/{id}/modification', name: 'app_administrateur_ticket_modificationstatut')]
+    public function modificationstatutTicket(Ticket $ticket, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(AdministrateurticketForm::class, $ticket);
-        $form->handleRequest($request);
+        $ticket->setStatut(new \DateTime());
+        $em->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
-            $this->addFlash('success', 'Ticket modifié avec succès.');
-            return $this->redirectToRoute('app_administrateur_tickets');
-        }
-
-        return $this->render('administrateur/ticket/modification.html.twig', [
-            'form' => $form->createView(),
-            'ticket' => $ticket,
-        ]);
+        $this->addFlash('success', 'Statut du ticket modifié avec succès.');
+        return $this->redirectToRoute('app_administrateur_tickets');
     }
 
     #[Route('/administrateur/ticket/{id}/suppression', name: 'app_administrateur_ticket_suppression', methods: ['POST'])]
-    public function deleteTicket(Ticket $ticket, Request $request, EntityManagerInterface $em): Response
+    public function suppressionTicket(Ticket $ticket, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete-ticket-' . $ticket->getId(), $request->request->get('_token'))) {
             $em->remove($ticket);

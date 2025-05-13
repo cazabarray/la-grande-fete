@@ -1,14 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 header {
+  background-color: red;
+}
+header div {
+  height: 50px;
   width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
+  margin-bottom: 50px;
 }
-header ul {
+header div ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+}
+header div ul a {
+  color: white;
+  text-decoration: none;
+}
+
+.administrateur-ticket-index {
+  width: 25%;
+  margin: auto;
+}
+.administrateur-ticket-index ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.administrateur-ticket-index ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.administrateur-ticket-index ul li .conteneur {
+  position: relative;
+  border: solid 2.5px red;
+  padding: 10px;
+}
+.administrateur-ticket-index ul li .conteneur .statut {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  color: white;
+}
+.administrateur-ticket-index ul li .conteneur .statut.attente {
+  background-color: red;
+}
+.administrateur-ticket-index ul li .conteneur .statut.traite {
+  background-color: green;
+}
+.administrateur-ticket-index ul li .boutons {
+  display: flex;
+  justify-content: center;
   gap: 10px;
 }
 

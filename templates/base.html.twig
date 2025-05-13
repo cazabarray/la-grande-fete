@@ -13,30 +13,32 @@
     </head>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
-                    <li><a href="{{ path('app_support') }}">Support</a></li>
-                </ul>
-            </nav>
-            
-            {% if app.user %}
+            <div>
                 <nav>
                     <ul>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
-                        {% endif %}
-                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
+                        <li><a href="{{ path('app_support') }}">Support</a></li>
                     </ul>
                 </nav>
-            {% else %}
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
-                        <li><a href="{{ path('app_register') }}">Inscription</a></li>
-                    </ul>
-                </nav>
-            {% endif %}
+                
+                {% if app.user %}
+                    <nav>
+                        <ul>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
+                            {% endif %}
+                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        </ul>
+                    </nav>
+                {% else %}
+                    <nav>
+                        <ul>
+                            <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                            <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
         </header>
         <main>
             {% block body %}{% endblock %}

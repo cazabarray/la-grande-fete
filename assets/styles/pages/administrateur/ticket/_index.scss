@@ -1,0 +1,49 @@
+@use '../../../variables';
+
+.administrateur-ticket-index {
+    width: 25%;
+    margin: auto;
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .conteneur {
+                position: relative;
+                border: solid 2.5px variables.$rouge;
+                padding: 10px;
+
+                .statut {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    padding: 5px 10px;
+                    border-radius: 50px;
+                    color: white;
+
+                    &.attente {
+                        background-color: variables.$rouge;
+                    }
+
+                    &.traite {
+                        background-color: green;
+                    }
+
+                }
+            }
+
+            .boutons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+        }
+    }
+}

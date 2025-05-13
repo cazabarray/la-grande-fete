@@ -1,14 +1,28 @@
-header {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+@use '../variables';
 
-    ul {
-        list-style: none;
+header {
+    background-color: variables.$rouge;
+
+    div {
+        height: 50px;
+        width: 90%;
+        margin: auto;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 10px;
+        margin-bottom: 50px;
+
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
     }
 }

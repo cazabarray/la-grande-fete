@@ -1,5 +1,6 @@
-• Créer la gestion des utilisateurs et des tickets
+• Coder la gestion des utilisateurs
 
+• Styliser le site entier
 • Voir le fonctionnement des message d'erreur et les configurer comme il faut | Global
 • Configurer la connexion automatique après la création d'un compte | Inscription
 • Voir les obligations et configurer les termes | Inscription

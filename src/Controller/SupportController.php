@@ -45,7 +45,7 @@ final class SupportController extends AbstractController
     }
 
     #[Route('/support/{id}', name: 'app_support_ticket')]
-    public function edit(Ticket $ticket, Security $security, Request $request, EntityManagerInterface $em): Response
+    public function modification(Ticket $ticket, Security $security, Request $request, EntityManagerInterface $em): Response
     {
         if ($ticket->getUser() !== $security->getUser()) {
             throw $this->createAccessDeniedException();

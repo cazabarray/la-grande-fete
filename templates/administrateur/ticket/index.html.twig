@@ -3,27 +3,36 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <nav>
-        <ul>
-        {% for ticket in tickets %}
-            <li>
-                <p>{{ ticket.user.email }}</p>
-                <p>{{ ticket.sujet }}</p>
-                <p>{{ ticket.message }}</p>
-                {% if ticket.statut %}
-                    <p>Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
-                {% else %}
-                    <p>En attente d'une réponse</p>
-                {% endif %}
+    <div class="administrateur-ticket-index">
+        <nav>
+            <ul>
+                {% for ticket in tickets %}
+                    <li>
+                        <div class="conteneur">
+                            {% if ticket.statut %}
+                                <p class="statut traite">Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
+                            {% else %}
+                                <p class="statut attente">En attente d'une réponse</p>
+                            {% endif %}
 
-                <a href="{{ path('app_administrateur_ticket_modification', { id: ticket.id }) }}">Modifier le ticket</a>
+                            <p>{{ ticket.user.email }}</p>
+                            <p>{{ ticket.sujet }}</p>
+                            <p>{{ ticket.message }}</p>
+                        </div>
 
-                <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
-                    <button>Supprimer le ticket</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
-    </nav>
+                        <div class="boutons">
+                            {% if ticket.statut is null %}
+                                <a href="{{ path('app_administrateur_ticket_modificationstatut', { id: ticket.id }) }}">Modifier le statut du ticket</a>
+                            {% endif %}
+
+                            <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
+                                <button>Supprimer le ticket</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
 {% endblock %}

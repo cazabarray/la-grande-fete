@@ -1,8 +1,7 @@
-• Comprendre la raison de la deconnexion lorsque que je vais sur l'accès administrateur
+• Faire un tour des controller et des templates pour voir les messages et les configurer en parlant avec "vous" et à l'inmpératif
 • Créer la gestion des utilisateurs et des tickets
 
 • Se pencher sur les messages d'erreur | Connexion & inscription
-• Configurer la vérification d'email | Inscription
 • Configurer la connexion automatique après la création d'un compte | Inscription
 • Voir les obligations et configurer les termes | Inscription
-• Configurer le mise en mémoire du compte connecter | Connexion
+• Configurer le mise en mémoire d'un compte lors de sa connexion | Connexion

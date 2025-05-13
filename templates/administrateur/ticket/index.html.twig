@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès administrateur | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+        {% for ticket in tickets %}
+            <li>
+                <p>{{ ticket.user.email }}</p>
+                <p>{{ ticket.sujet }}</p>
+                <p>{{ ticket.message }}</p>
+                {% if ticket.statut %}
+                    <p>Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
+                {% else %}
+                    <p>En attente d'une réponse</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    </nav>
+{% endblock %}

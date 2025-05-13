@@ -15,6 +15,13 @@
                 {% else %}
                     <p>En attente d'une réponse</p>
                 {% endif %}
+
+                <a href="{{ path('app_administrateur_ticket_modification', { id: ticket.id }) }}">Modifier le ticket</a>
+
+                <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
+                    <button>Supprimer le ticket</button>
+                </form>
             </li>
         {% endfor %}
     </ul>

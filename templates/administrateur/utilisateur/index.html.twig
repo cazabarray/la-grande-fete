@@ -13,7 +13,7 @@
 
                 <form method="post" action="{{ path('app_administrateur_utilisateur_suppression', { id: user.id }) }}" onsubmit="return confirm('Voulez vous vraiment supprimer cet utilisateur ?');">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete-user-' ~ user.id) }}">
-                    <button >Supprimer l'utilisateur</button>
+                    <button>Supprimer l'utilisateur</button>
                 </form>
             </li>
         {% endfor %}

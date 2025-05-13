@@ -1,0 +1,14 @@
+header {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+}

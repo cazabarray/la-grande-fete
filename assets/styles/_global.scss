@@ -1,4 +1,23 @@
+@use "variables";
+
 * {
     margin: 0;
     padding: 0;
+}
+
+.bouton {
+    border: solid 2px variables.$rouge;
+    background-color: white;
+    font-family: variables.$font;
+    font-size: 25px;
+    color: variables.$rouge;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 25px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: variables.$rouge;
+        color: white;
+    }
 }

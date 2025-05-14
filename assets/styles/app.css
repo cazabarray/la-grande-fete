@@ -3,28 +3,51 @@
   padding: 0;
 }
 
-header {
-  background-color: red;
+.bouton {
+  border: solid 2px #dc353d;
+  background-color: white;
+  font-family: "niagara", serif;
+  font-size: 25px;
+  color: #dc353d;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 25px;
 }
-header div {
-  height: 50px;
+.bouton:hover {
+  cursor: pointer;
+  background-color: #dc353d;
+  color: white;
+}
+
+header {
   width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
   margin-bottom: 50px;
 }
-header div ul {
+header ul {
   list-style: none;
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  align-items: center;
+  gap: 25px;
 }
-header div ul a {
-  color: white;
+header ul.pages {
+  gap: 100px;
+}
+header ul .logotype {
+  width: fit-content;
+}
+header ul a {
+  font-family: "niagara", serif;
+  font-size: 36px;
+  color: black;
   text-decoration: none;
+}
+header ul a img {
+  width: 75px;
+  margin: 10px 0;
 }
 
 .administrateur-ticket-index {
@@ -44,22 +67,28 @@ header div ul a {
 }
 .administrateur-ticket-index ul li .conteneur {
   position: relative;
-  border: solid 2.5px red;
-  padding: 10px;
+  background-color: #dc353d;
+  border-radius: 10px;
+  padding: 25px;
+}
+.administrateur-ticket-index ul li .conteneur p {
+  font-family: "niagara", serif;
+  font-size: 25px;
+  color: white;
 }
 .administrateur-ticket-index ul li .conteneur .statut {
   position: absolute;
   top: 10px;
   right: 10px;
   padding: 5px 10px;
-  border-radius: 50px;
-  color: white;
+  border-radius: 25px;
+  background-color: white;
 }
 .administrateur-ticket-index ul li .conteneur .statut.attente {
-  background-color: red;
+  color: #dc353d;
 }
 .administrateur-ticket-index ul li .conteneur .statut.traite {
-  background-color: green;
+  color: green;
 }
 .administrateur-ticket-index ul li .boutons {
   display: flex;

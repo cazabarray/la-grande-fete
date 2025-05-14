@@ -1,27 +1,36 @@
 @use '../variables';
 
 header {
-    background-color: variables.$rouge;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
 
-    div {
-        height: 50px;
-        width: 90%;
-        margin: auto;
+    ul {
+        list-style: none;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 50px;
+        gap: 25px;
 
-        ul {
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
+        &.pages {
+            gap: 100px;
+        }
 
-            a {
-                color: white;
-                text-decoration: none;
+        .logotype {
+            width: fit-content;
+        }
+
+        a {
+            font-family: variables.$font;
+            font-size: 36px;
+            color: black;
+            text-decoration: none;
+
+            img {
+                width: 75px;
+                margin: 10px 0;
             }
         }
     }

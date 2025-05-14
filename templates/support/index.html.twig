@@ -3,24 +3,34 @@
 {% block title %}Support | {{ parent() }}{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        {{ form_row(form.sujet) }}
-        {{ form_row(form.message) }}
-        <button>Envoyer le ticket</button>
-    {{ form_end(form) }}
+    <div class="support">
+        <div class="banniere">
+            <h1>FORMULAIRE DE CONTACT</h1>
+        </div>
 
-    <ul>
-        {% for ticket in tickets %}
-            <li>
-                <p>{{ ticket.sujet }}</p>
-                <p>{{ ticket.message }}</p>
-                {% if ticket.statut %}
-                    <p>Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
-                {% else %}
-                    <a href="{{ path('app_support_ticket', {id: ticket.id}) }}">Modifier le ticket</a>
-                    <p>En attente d'une réponse</p>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+        <h2>Nous contacter</h2>
+        
+        <div class="formulaire">
+            {{ form_start(form) }}
+                {{ form_row(form.sujet) }}
+                {{ form_row(form.message) }}
+                <button>Envoyer le ticket</button>
+            {{ form_end(form) }}
+        </div>
+
+        <ul>
+            {% for ticket in tickets %}
+                <li>
+                    <p>{{ ticket.sujet }}</p>
+                    <p>{{ ticket.message }}</p>
+                    {% if ticket.statut %}
+                        <p>Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
+                    {% else %}
+                        <a href="{{ path('app_support_ticket', {id: ticket.id}) }}">Modifier le ticket</a>
+                        <p>En attente d'une réponse</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

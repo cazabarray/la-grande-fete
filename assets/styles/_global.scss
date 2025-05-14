@@ -5,11 +5,26 @@
     padding: 0;
 }
 
-.bouton {
+h1, h2, p, a, button, label, input, textarea {
+    font-family: variables.$font;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+p, a, button, label, input, textarea {
+    font-size: 25px;
+}
+
+.bouton, button {
     border: solid 2px variables.$rouge;
     background-color: white;
-    font-family: variables.$font;
-    font-size: 25px;
     color: variables.$rouge;
     text-decoration: none;
     padding: 5px 10px;
@@ -19,5 +34,55 @@
         cursor: pointer;
         background-color: variables.$rouge;
         color: white;
+    }
+}
+
+.banniere {
+    height: 650px;
+    background-color: variables.$rouge;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+
+    h1 {
+        color: white;
+    }
+}
+
+.formulaire {
+    width: 40%;
+    margin: auto;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        input, textarea {
+            border: none;
+            background-color: variables.$rouge;
+            color: white;
+            padding: 10px;
+        }
+
+        input {
+            height: 40px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+    }
+
+    button {
+        width: fit-content;
+        margin: auto;
     }
 }

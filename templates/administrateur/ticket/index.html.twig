@@ -3,7 +3,7 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="administrateur-ticket-index">
+    <div class="administrateur">
         <nav>
             <ul>
                 {% for ticket in tickets %}
@@ -27,7 +27,7 @@
 
                             <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
-                                <button class="bouton">Supprimer le ticket</button>
+                                <button>Supprimer le ticket</button>
                             </form>
                         </div>
                     </li>

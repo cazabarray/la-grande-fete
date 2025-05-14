@@ -3,9 +3,11 @@
 {% block title %}Modification ticket | Support | {{ parent() }}{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        {{ form_row(form.sujet) }}
-        {{ form_row(form.message) }}
-        <button>Modifier le ticket</button>
-    {{ form_end(form) }}
+    <div class="formulaire">
+        {{ form_start(form) }}
+            {{ form_row(form.sujet) }}
+            {{ form_row(form.message) }}
+            <button>Modifier le ticket</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

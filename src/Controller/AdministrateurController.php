@@ -29,27 +29,34 @@ final class AdministrateurController extends AbstractController
     {
         $users = $userRepo->findAll();
 
-        return $this->render('administrateur/utilisateur/index.html.twig', [
+        return $this->render('administrateur/utilisateurs.html.twig', [
             'users' => $users,
         ]);
     }
 
-    #[Route('/administrateur/utilisateur/{id}/modification', name: 'app_administrateur_utilisateur_modification')]
-    public function modificationUtilisateur(User $user, Request $request, EntityManagerInterface $em): Response
+    #[Route('/administrateur/utilisateur/{id}/promotion', name: 'app_administrateur_utilisateur_promotion')]
+    public function promotionUtilisateur(User $user, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(AdministrateurutilisateurForm::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (!in_array('ROLE_ADMIN', $user->getRoles())) {
+            $user->setRoles(array_merge($user->getRoles(), ['ROLE_ADMIN']));
             $em->flush();
-            $this->addFlash('success', 'Utilisateur modifié avec succès.');
-            return $this->redirectToRoute('app_administrateur_utilisateurs');
+            $this->addFlash('success', 'Utilisateur promu en administrateur.');
         }
 
-        return $this->render('administrateur/utilisateur/modification.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user,
-        ]);
+        return $this->redirectToRoute('app_administrateur_utilisateurs');
+    }
+
+    #[Route('/administrateur/utilisateur/{id}/retrogradation', name: 'app_administrateur_utilisateur_retrogradation')]
+    public function retrogradationUtilisateur(User $user, EntityManagerInterface $em): Response
+    {
+        $newRoles = array_filter($user->getRoles(), fn($r) => $r !== 'ROLE_ADMIN');
+
+        $user->setRoles($newRoles);
+        $em->flush();
+
+        $this->addFlash('success', 'Administrateur rétrogradé en utilisateur.');
+
+        return $this->redirectToRoute('app_administrateur_utilisateurs');
     }
 
     #[Route('/administrateur/utilisateur/{id}/suppression', name: 'app_administrateur_utilisateur_suppression', methods: ['POST'])]
@@ -61,7 +68,7 @@ final class AdministrateurController extends AbstractController
             $this->addFlash('success', 'Utilisateur supprimé avec succès.');
         }
 
-        return $this->redirectToRoute('app_administrateur_tickets');
+        return $this->redirectToRoute('app_administrateur_utilisateurs');
     }
 
     #[Route('/administrateur/tickets', name: 'app_administrateur_tickets')]
@@ -69,12 +76,12 @@ final class AdministrateurController extends AbstractController
     {
         $tickets = $ticketRepo->findBy([], ['id' => 'DESC']);
 
-        return $this->render('administrateur/ticket/index.html.twig', [
+        return $this->render('administrateur/tickets.html.twig', [
             'tickets' => $tickets,
         ]);
     }
 
-    #[Route('/admin/ticket/{id}/modification', name: 'app_administrateur_ticket_modificationstatut')]
+    #[Route('/admin/ticket/{id}/modification', name: 'app_administrateur_ticket_modification')]
     public function modificationstatutTicket(Ticket $ticket, EntityManagerInterface $em): Response
     {
         $ticket->setStatut(new \DateTime());

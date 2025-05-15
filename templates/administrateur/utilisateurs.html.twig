@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès administrateur | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="liste">
+        <ul>
+            {% for user in users %}
+                {% if user == app.user %}
+                {% else %}
+                    <li>
+                        <div class="conteneur">
+                            <p>{{ user.email }}</p>
+
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                <p>Administrateur</p>
+                            {% else %}
+                                <p>Utilisateur</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="boutons">
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                <a href="{{ path('app_administrateur_utilisateur_retrogradation', { id: user.id }) }}" class="bouton">Rétrograder l'utilisateur</a>
+                            {% else %}
+                                <a href="{{ path('app_administrateur_utilisateur_promotion', { id: user.id }) }}" class="bouton">Promouvoir l'utilisateur</a>
+                            {% endif %}
+
+                            <form method="post" action="{{ path('app_administrateur_utilisateur_suppression', { id: user.id }) }}" onsubmit="return confirm('Voulez vous vraiment supprimer cet utilisateur ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete-user-' ~ user.id) }}">
+                                <button>Supprimer l'utilisateur</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

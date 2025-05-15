@@ -4,8 +4,11 @@
 }
 
 h1, h2, p, a, button, label, input, textarea {
-  font-family: "niagara", serif;
   font-weight: 400;
+}
+
+h1, h2 {
+  font-family: "niagara", serif;
 }
 
 h1 {
@@ -17,7 +20,8 @@ h2 {
 }
 
 p, a, button, label, input, textarea {
-  font-size: 25px;
+  font-family: "montserrat", sans-serif;
+  font-size: 16px;
 }
 
 .bouton, button {
@@ -97,6 +101,7 @@ header ul .logotype {
   width: fit-content;
 }
 header ul a {
+  font-family: "niagara", serif;
   font-size: 35px;
   color: black;
   text-decoration: none;
@@ -111,7 +116,7 @@ header ul a img {
 }
 
 .administrateur {
-  width: 25%;
+  width: 30%;
   margin: auto;
 }
 .administrateur ul {
@@ -132,17 +137,15 @@ header ul a img {
   padding: 25px;
 }
 .administrateur ul li .conteneur p {
-  font-family: "niagara", serif;
-  font-size: 25px;
   color: white;
 }
 .administrateur ul li .conteneur .statut {
   position: absolute;
   top: 10px;
   right: 10px;
+  background-color: white;
   padding: 5px 10px;
   border-radius: 25px;
-  background-color: white;
 }
 .administrateur ul li .conteneur .statut.attente {
   color: #dc353d;

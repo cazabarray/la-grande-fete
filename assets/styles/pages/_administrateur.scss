@@ -1,7 +1,7 @@
 @use '../variables';
 
 .administrateur {
-    width: 25%;
+    width: 30%;
     margin: auto;
 
     ul {
@@ -22,8 +22,6 @@
                 padding: 25px;
 
                 p {
-                    font-family: variables.$font;
-                    font-size: 25px;
                     color: white;
                 }
 
@@ -31,9 +29,9 @@
                     position: absolute;
                     top: 10px;
                     right: 10px;
+                    background-color: white;
                     padding: 5px 10px;
                     border-radius: 25px;
-                    background-color: white;
 
                     &.attente {
                         color: variables.$rouge;

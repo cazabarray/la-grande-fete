@@ -12,9 +12,10 @@ use App\Repository\TicketRepository;
 use App\Entity\Ticket;
 use App\Form\TicketForm;
 
+#[Route('/support')]
 final class SupportController extends AbstractController
 {
-    #[Route('/support', name: 'app_support')]
+    #[Route(name: 'app_support')]
     public function index(Security $security, Request $request, EntityManagerInterface $em, TicketRepository $repo): Response
     {
         $user = $security->getUser();
@@ -44,7 +45,7 @@ final class SupportController extends AbstractController
         ]);
     }
 
-    #[Route('/support/{id}', name: 'app_support_modification')]
+    #[Route('/{id}', name: 'app_support_modification')]
     public function modification(Ticket $ticket, Security $security, Request $request, EntityManagerInterface $em): Response
     {
         if ($ticket->getUser() !== $security->getUser()) {
@@ -70,7 +71,7 @@ final class SupportController extends AbstractController
         ]);
     }
 
-    #[Route('/support/{id}/suppression', name: 'app_support_suppression', methods: ['POST'])]
+    #[Route('/{id}/suppression', name: 'app_support_suppression', methods: ['POST'])]
     public function suppression(Security $security, Ticket $ticket, Request $request, EntityManagerInterface $em): Response
     {
         $user = $security->getUser();

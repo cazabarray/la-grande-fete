@@ -50,35 +50,28 @@ p, a, button, label, input, textarea {
   color: white;
 }
 
-.formulaire {
-  width: 40%;
+form {
+  width: 50%;
   margin: auto;
 }
-.formulaire form {
+form div {
   display: flex;
   flex-direction: column;
-  gap: 25px;
 }
-.formulaire div {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.formulaire div input, .formulaire div textarea {
-  border: none;
-  background-color: #dc353d;
-  color: white;
-  padding: 10px;
-}
-.formulaire div input {
-  height: 40px;
-}
-.formulaire div textarea {
-  height: 80px;
-}
-.formulaire button {
+form div label {
+  font-family: "Ubuntu", sans-serif;
+  transform: translateY(50%);
+  background-color: white;
   width: fit-content;
-  margin: auto;
+  margin-left: 10px;
+  padding: 0 10px;
+}
+form div input, form div textarea {
+  border: solid 1px #dc353d;
+  font-family: "Ubuntu", sans-serif;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 10px;
 }
 
 .liste {

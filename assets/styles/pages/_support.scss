@@ -1,7 +1,14 @@
 @use "../variables";
 
 .support {
-    .liste {
-        margin-top: 100px;
+    .formulaire {
+        margin-bottom: 100px;
+
+        p {
+            font-size: 14px;
+            font-style: italic;
+            text-align: center;
+            margin-top: 25px;
+        }
     }
 }

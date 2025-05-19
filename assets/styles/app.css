@@ -126,6 +126,7 @@ p, a, button, label, input, textarea {
   background-color: white;
   padding: 5px 10px;
   border-radius: 25px;
+  font-size: 14px;
 }
 .liste ul li .conteneur .statut.attente {
   color: #dc353d;
@@ -169,8 +170,14 @@ header ul a img {
   margin: 10px 0;
 }
 
-.support .liste {
-  margin-top: 100px;
+.support .formulaire {
+  margin-bottom: 100px;
+}
+.support .formulaire p {
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 25px;
 }
 
 /*# sourceMappingURL=app.css.map */

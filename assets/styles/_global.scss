@@ -11,6 +11,16 @@ h1, h2, p, a, button, label, input, textarea {
 
 h1, h2 {
     font-family: variables.$font-titre;
+    width: fit-content;
+    margin: auto;
+
+    &::after {
+        content: "";
+        display: block;
+        border-top: solid 2px white;
+        width: 25%;
+        margin: 10px auto 0;
+    }
 }
 
 h1 {
@@ -19,6 +29,11 @@ h1 {
 
 h2 {
     font-size: 40px;
+    margin-bottom: 50px;
+
+    &::after {
+        border-top: solid 2px variables.$rouge;
+    }
 }
 
 p, a, button, label, input, textarea {
@@ -54,29 +69,39 @@ p, a, button, label, input, textarea {
     }
 }
 
-form {
-    width: 50%;
+.formulaire {
+    width: 40%;
     margin: auto;
 
-    div {
+    form {
         display: flex;
         flex-direction: column;
+        gap: 25px;
 
-        label {
-            font-family: "Ubuntu", sans-serif;
-            transform: translateY(50%);
-            background-color: white;
-            width: fit-content;
-            margin-left: 10px;
-            padding: 0 10px;
+        div {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-family: "Ubuntu", sans-serif;
+                transform: translateY(50%);
+                background-color: white;
+                width: fit-content;
+                margin-left: 10px;
+                padding: 0 10px;
+            }
+
+            input, textarea {
+                border: solid 2px variables.$rouge;
+                font-family: "Ubuntu", sans-serif;
+                padding: 15px;
+                border-radius: 10px;
+            }
         }
 
-        input, textarea {
-            border: solid 1px variables.$rouge;
-            font-family: "Ubuntu", sans-serif;
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 10px;
+        button {
+            width: fit-content;
+            margin: auto;
         }
     }
 }

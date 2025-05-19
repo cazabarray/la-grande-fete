@@ -1,6 +1,8 @@
 Prochaines étapes
-• Styliser le site entier
+• Adapter le style des boutons
+• Adapter le style de la page d'inscription
 • Coder la boutique avec la mise au panier
+• Créer les pages statiques et les styliser
 • Coder le tunnel d'achat
 
 Une fois le site terminé

@@ -9,6 +9,15 @@ h1, h2, p, a, button, label, input, textarea {
 
 h1, h2 {
   font-family: "niagara", serif;
+  width: fit-content;
+  margin: auto;
+}
+h1::after, h2::after {
+  content: "";
+  display: block;
+  border-top: solid 2px white;
+  width: 25%;
+  margin: 10px auto 0;
 }
 
 h1 {
@@ -17,6 +26,10 @@ h1 {
 
 h2 {
   font-size: 40px;
+  margin-bottom: 50px;
+}
+h2::after {
+  border-top: solid 2px #dc353d;
 }
 
 p, a, button, label, input, textarea {
@@ -50,15 +63,20 @@ p, a, button, label, input, textarea {
   color: white;
 }
 
-form {
-  width: 50%;
+.formulaire {
+  width: 40%;
   margin: auto;
 }
-form div {
+.formulaire form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.formulaire form div {
   display: flex;
   flex-direction: column;
 }
-form div label {
+.formulaire form div label {
   font-family: "Ubuntu", sans-serif;
   transform: translateY(50%);
   background-color: white;
@@ -66,12 +84,15 @@ form div label {
   margin-left: 10px;
   padding: 0 10px;
 }
-form div input, form div textarea {
-  border: solid 1px #dc353d;
+.formulaire form div input, .formulaire form div textarea {
+  border: solid 2px #dc353d;
   font-family: "Ubuntu", sans-serif;
   padding: 15px;
-  margin-bottom: 25px;
   border-radius: 10px;
+}
+.formulaire form button {
+  width: fit-content;
+  margin: auto;
 }
 
 .liste {
@@ -148,11 +169,8 @@ header ul a img {
   margin: 10px 0;
 }
 
-.support h2 {
-  text-align: center;
-}
-.support .formulaire, .support .liste {
-  margin-bottom: 100px;
+.support .liste {
+  margin-top: 100px;
 }
 
 /*# sourceMappingURL=app.css.map */

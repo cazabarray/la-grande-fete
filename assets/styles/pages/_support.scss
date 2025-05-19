@@ -1,11 +1,7 @@
 @use "../variables";
 
 .support {
-    h2 {
-        text-align: center;
-    }
-
-    .formulaire, .liste {
-        margin-bottom: 100px;
+    .liste {
+        margin-top: 100px;
     }
 }

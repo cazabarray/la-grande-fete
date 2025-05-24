@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique | {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if article.image %}
+        <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.nom }}" width="300">
+    {% endif %}
+
+    <p>{{ article.description }}</p>
+    <p>{{ article.prix }} €</p>
+
+    <a href="{{ path('app_panier_ajout', { id: article.id }) }}" class="bouton">Ajouter l'article au panier</a>
+{% endblock %}

@@ -1,5 +1,6 @@
 À faire
 • Coder les fiches produit
+• Coder l'intégration des images produit
 • Continuer de coder le panier
 • Créer les pages statiques et les styliser
 • Coder le tunnel d'achat

@@ -206,7 +206,12 @@ header ul a img {
 }
 .boutique ul .article .image {
   height: 200px;
-  background-color: lightgrey;
+  background-color: #f0f0f0;
+  padding: 25px;
+}
+.boutique ul .article .image .background {
+  width: 100%;
+  height: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -226,8 +231,30 @@ header ul a img {
   margin-top: 25px;
 }
 
-.accesadministrateur .ajout {
+.accesadministrateurarticles .ajout {
   margin: 0 auto 25px;
+}
+.accesadministrateurarticles .liste {
+  width: 50%;
+}
+.accesadministrateurarticles .liste .flex {
+  display: flex;
+  gap: 10px;
+}
+.accesadministrateurarticles .liste .flex .image {
+  width: 35%;
+  background-color: #f0f0f0;
+  padding: 25px;
+  border-radius: 10px;
+}
+.accesadministrateurarticles .liste .flex .image .background {
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.accesadministrateurarticles .liste .flex .contenu {
+  width: 65%;
 }
 
 /*# sourceMappingURL=app.css.map */

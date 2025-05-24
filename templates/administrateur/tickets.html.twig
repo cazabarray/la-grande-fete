@@ -9,9 +9,9 @@
                 <li>
                     <div class="conteneur">
                         {% if ticket.statut %}
-                            <p class="statut traite">Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
+                            <p class="bulle traite">Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
                         {% else %}
-                            <p class="statut attente">En attente d'une réponse</p>
+                            <p class="bulle attente">En attente d'une réponse</p>
                         {% endif %}
 
                         <p>{{ ticket.user.email }}</p>

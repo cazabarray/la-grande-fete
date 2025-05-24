@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès administrateur | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="formulaire">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button >{{ article.id ? 'Modifier' : 'Créer' }} l'article</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

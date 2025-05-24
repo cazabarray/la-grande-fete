@@ -42,6 +42,7 @@ a {
 }
 
 .bouton, button {
+  width: fit-content;
   border: solid 2px #dc353d;
   background-color: white;
   color: #dc353d;
@@ -124,11 +125,14 @@ a {
   background-color: #dc353d;
   border-radius: 10px;
   padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .liste ul li .conteneur p {
   color: white;
 }
-.liste ul li .conteneur .statut {
+.liste ul li .conteneur .bulle {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -136,11 +140,12 @@ a {
   padding: 5px 10px;
   border-radius: 25px;
   font-size: 14px;
+  color: black;
 }
-.liste ul li .conteneur .statut.attente {
+.liste ul li .conteneur .bulle.attente {
   color: #dc353d;
 }
-.liste ul li .conteneur .statut.traite {
+.liste ul li .conteneur .bulle.traite {
   color: green;
 }
 .liste ul li .boutons {
@@ -184,6 +189,33 @@ header ul a img {
   margin-top: 50px;
 }
 
+.boutique {
+  width: 90%;
+  margin: auto;
+}
+.boutique ul {
+  list-style: none;
+}
+.boutique ul .article {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: black;
+  text-decoration: none;
+}
+.boutique ul .article .image {
+  height: 200px;
+  background-color: lightgrey;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.boutique ul .article .contenu {
+  display: flex;
+  justify-content: space-between;
+}
+
 .support .formulaire {
   margin-bottom: 100px;
 }
@@ -192,6 +224,10 @@ header ul a img {
   font-style: italic;
   text-align: center;
   margin-top: 25px;
+}
+
+.accesadministrateur .ajout {
+  margin: 0 auto 25px;
 }
 
 /*# sourceMappingURL=app.css.map */

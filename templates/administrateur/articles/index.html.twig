@@ -3,18 +3,39 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_administrateur_article_ajout') }}">Ajouter un nouvel article</a>
+    <div class="accesadministrateur">
+        <a href="{{ path('app_administrateur_article_ajout') }}" class="bouton ajout">Ajouter un nouvel article</a>
 
-    <ul>
-        {% for article in articles %}
-            <li>
-                {{ article.nom }} – {{ article.prix }} €
-                <a href="{{ path('app_administrateur_article_modification', { id: article.id }) }}">Modifier cet article</a>
-                <form method="post" action="{{ path('admin_article_supprimer', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('suppression-article' ~ article.id) }}">
-                    <button>Supprimer cet article</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+        <div class="liste">
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        <div class="conteneur">
+                            <p>{{ article.nom }}</p>
+                            <p class="bulle">{{ article.prix }} €</p>
+                            <p>{{ article.description }}</p>
+
+                            {% if article.image %}
+                                <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.nom }}">
+                            {% endif %}
+
+                            <p>{{ article.type }}</p>
+
+                            {% if article.taille %}
+                                <p>{{ article.taille }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="boutons">
+                            <a href="{{ path('app_administrateur_article_modification', { id: article.id }) }}" class="bouton">Modifier l'article</a>
+                            <form method="post" action="{{ path('app_administrateur_article_suppression', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('suppression-article' ~ article.id) }}">
+                                <button>Supprimer l'article</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}

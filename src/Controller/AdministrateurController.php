@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\AdministrateurutilisateurForm;
 use App\Repository\ArticleRepository;
 use App\Entity\Article;
-use App\Form\ArticleType;
+use App\Form\ArticleForm;
 use App\Repository\TicketRepository;
 use App\Entity\Ticket;
 use App\Form\AdministrateurticketForm;
@@ -89,14 +89,14 @@ final class AdministrateurController extends AbstractController
     public function ajoutArticle(Request $request, EntityManagerInterface $em): Response
     {
         $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleForm::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($article);
             $em->flush();
             $this->addFlash('success', 'Article ajouté avec succès.');
-            return $this->redirectToRoute('admin_articles');
+            return $this->redirectToRoute('app_administrateur_articles');
         }
 
         return $this->render('administrateur/articles/formulairearticle.html.twig', [
@@ -108,7 +108,7 @@ final class AdministrateurController extends AbstractController
     #[Route('/article/{id}', name: 'app_administrateur_article_modification')]
     public function modificationArticle(Article $article, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleForm::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

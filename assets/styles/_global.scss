@@ -41,18 +41,28 @@ p, a, button, label, input, textarea {
     font-size: 16px;
 }
 
+a {
+    color: variables.$rouge;
+}
+
 .bouton, button {
     border: solid 2px variables.$rouge;
     background-color: white;
     color: variables.$rouge;
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 25px;
+    display: flex;
+    gap: 10px;
 
     &:hover {
         cursor: pointer;
         background-color: variables.$rouge;
         color: white;
+    }
+
+    &::after {
+        content: ">>";
     }
 }
 

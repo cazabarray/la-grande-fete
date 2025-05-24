@@ -1,7 +1,4 @@
 Prochaines étapes
-• Ajouter un renvoyer vers les pages d'inscription et de connexion
-• Adapter le style des boutons
-• Adapter le style de la page d'inscription
 • Coder la boutique avec la mise au panier
 • Créer les pages statiques et les styliser
 • Coder le tunnel d'achat

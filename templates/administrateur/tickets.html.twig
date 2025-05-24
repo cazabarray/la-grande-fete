@@ -24,8 +24,8 @@
                             <a href="{{ path('app_administrateur_ticket_modification', { id: ticket.id }) }}" class="bouton">Modifier le statut du ticket</a>
                         {% endif %}
 
-                        <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
+                        <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce ticket ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('suppression-ticket' ~ ticket.id) }}">
                             <button>Supprimer le ticket</button>
                         </form>
                     </div>

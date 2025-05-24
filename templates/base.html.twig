@@ -17,6 +17,7 @@
             <nav>
                 <ul class="pages">
                     <li><a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/1b90def810d1ac793ccc40660d92328655edd314.png') }}" alt="Logotype de La Grande Fête"></a></li>
+                    <li><a href="{{ path('app_boutique') }}">Boutique</a></li>
                     <li><a href="{{ path('app_support') }}">Support</a></li>
                 </ul>
             </nav>
@@ -27,6 +28,7 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
                         {% endif %}
+                        <li><a href="{{ path('app_panier') }}">Panier</a></li>
                         <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                     </ul>
                 </nav>

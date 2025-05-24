@@ -10,6 +10,9 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\AdministrateurutilisateurForm;
+use App\Repository\ArticleRepository;
+use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\TicketRepository;
 use App\Entity\Ticket;
 use App\Form\AdministrateurticketForm;
@@ -72,6 +75,66 @@ final class AdministrateurController extends AbstractController
         return $this->redirectToRoute('app_administrateur_utilisateurs');
     }
 
+    #[Route('/articles', name: 'app_administrateur_articles')]
+    public function articles(ArticleRepository $repo): Response
+    {
+        $articles = $repo->findAll();
+
+        return $this->render('administrateur/articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
+
+    #[Route('/article/nouveau', name: 'app_administrateur_article_ajout')]
+    public function ajoutArticle(Request $request, EntityManagerInterface $em): Response
+    {
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($article);
+            $em->flush();
+            $this->addFlash('success', 'Article ajouté avec succès.');
+            return $this->redirectToRoute('admin_articles');
+        }
+
+        return $this->render('administrateur/articles/formulairearticle.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article,
+        ]);
+    }
+
+    #[Route('/article/{id}', name: 'app_administrateur_article_modification')]
+    public function modificationArticle(Article $article, Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'Article modifié avec succès.');
+            return $this->redirectToRoute('app_administrateur_articles');
+        }
+
+        return $this->render('administrateur/articles/formulairearticle.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article,
+        ]);
+    }
+
+    #[Route('/article/{id}/suppression', name: 'app_administrateur_article_suppression', methods: ['POST'])]
+    public function supprimessionArticle(Article $article, Request $request, EntityManagerInterface $em): Response
+    {
+        if ($this->isCsrfTokenValid('suppression-article' . $article->getId(), $request->request->get('_token'))) {
+            $em->remove($article);
+            $em->flush();
+            $this->addFlash('success', 'Article supprimé avec succès.');
+        }
+
+        return $this->redirectToRoute('app_administrateur_articles');
+    }
+
     #[Route('/tickets', name: 'app_administrateur_tickets')]
     public function tickets(TicketRepository $ticketRepo): Response
     {
@@ -95,7 +158,7 @@ final class AdministrateurController extends AbstractController
     #[Route('/ticket/{id}/suppression', name: 'app_administrateur_ticket_suppression', methods: ['POST'])]
     public function suppressionTicket(Ticket $ticket, Request $request, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('delete-ticket-' . $ticket->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('suppression-ticket' . $ticket->getId(), $request->request->get('_token'))) {
             $em->remove($ticket);
             $em->flush();
             $this->addFlash('success', 'Ticket supprimé avec succès.');

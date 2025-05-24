@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès administrateur | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_administrateur_article_ajout') }}">Ajouter un nouvel article</a>
+
+    <ul>
+        {% for article in articles %}
+            <li>
+                {{ article.nom }} – {{ article.prix }} €
+                <a href="{{ path('app_administrateur_article_modification', { id: article.id }) }}">Modifier cet article</a>
+                <form method="post" action="{{ path('admin_article_supprimer', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('suppression-article' ~ article.id) }}">
+                    <button>Supprimer cet article</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

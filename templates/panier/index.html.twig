@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier | {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% for ligne in articles %}
+        <div>
+            <strong>{{ ligne.article.nom }}</strong> – {{ ligne.quantite }}
+        </div>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endfor %}
+{% endblock %}

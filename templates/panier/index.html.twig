@@ -3,11 +3,30 @@
 {% block title %}Panier | {{ parent() }}{% endblock %}
 
 {% block body %}
-    {% for ligne in articles %}
-        <div>
-            <strong>{{ ligne.article.nom }}</strong> – {{ ligne.quantite }}
-        </div>
+    {% if articles %}
+        <ul class="articles">
+            {% for ligne in articles %}
+                <li>
+                    <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="article">
+                        <div class="image">
+                            {% if ligne.article.image %}
+                                <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
+                            {% else %}
+                                <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="contenu">
+                            <p><strong>{{ ligne.article.nom }}</strong></p>
+                            <p><strong>{{ ligne.article.prix }} €</strong></p>
+                        </div>
+                    </a>
+
+                    <a href="{{ path('app_panier_suppression', { id: ligne.article.id }) }}" class="bouton">Retirer l'article</a>
+                </li>
+            {% endfor %}
+        </ul>
     {% else %}
         <p>Votre panier est vide.</p>
-    {% endfor %}
+    {% endif %}
 {% endblock %}

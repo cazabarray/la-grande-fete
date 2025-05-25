@@ -20,36 +20,40 @@
             <p>Un administrateur vous répondra dès que possible par email à l'adresse de votre compte.</p>
         </div>
 
-        <div class="liste">
-            <ul>
-                {% for ticket in tickets %}
-                    <li>
-                        <div class="conteneur">
-                            <p>{{ ticket.sujet }}</p>
-                            <p>{{ ticket.message }}</p>
+        {% if app.user %}
+            <h2>Vos tickets</h2>
 
-                            {% if ticket.statut %}
-                                <p class="bulle traite">Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
-                            {% else %}
-                                <p class="bulle attente">En attente d'une réponse</p>
-                            {% endif %}
-                        </div>
+            <div class="liste">
+                <ul>
+                    {% for ticket in tickets %}
+                        <li>
+                            <div class="conteneur">
+                                <p>{{ ticket.sujet }}</p>
+                                <p>{{ ticket.message }}</p>
 
-                        {% if not ticket.statut %}
-                            <div class="boutons">
-                                <a href="{{ path('app_support_modification', {id: ticket.id}) }}" class="bouton">Modifier le ticket</a>
-                                
-                                {% if ticket.user == app.user %}
-                                    <form method="post" action="{{ path('app_support_suppression', { id: ticket.id }) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
-                                        <button>Supprimer le ticket</button>
-                                    </form>
+                                {% if ticket.statut %}
+                                    <p class="bulle traite">Traité le {{ ticket.statut|date('d/m/Y H:i') }}</p>
+                                {% else %}
+                                    <p class="bulle attente">En attente d'une réponse</p>
                                 {% endif %}
                             </div>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+
+                            {% if not ticket.statut %}
+                                <div class="boutons">
+                                    <a href="{{ path('app_support_modification', {id: ticket.id}) }}" class="bouton">Modifier le ticket</a>
+                                    
+                                    {% if ticket.user == app.user %}
+                                        <form method="post" action="{{ path('app_support_suppression', { id: ticket.id }) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
+                                            <button>Supprimer le ticket</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

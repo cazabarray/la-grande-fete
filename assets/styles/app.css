@@ -61,18 +61,6 @@ a {
   content: ">>";
 }
 
-.banniere {
-  height: 650px;
-  background-color: #dc353d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-}
-.banniere h1 {
-  color: white;
-}
-
 .formulaire {
   width: 40%;
   margin: auto;
@@ -103,6 +91,26 @@ a {
 .formulaire form button {
   width: fit-content;
   margin: auto;
+}
+
+.banniere {
+  height: 500px;
+  background-color: #dc353d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.banniere h1 {
+  color: white;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .liste {
@@ -189,14 +197,20 @@ header ul a img {
   margin-top: 50px;
 }
 
-.boutique {
+.boutique .image {
+  background-color: #f0f0f0;
+  padding: 25px;
+}
+.boutique .contenu {
+  display: flex;
+  justify-content: space-between;
+}
+.boutique .articles {
   width: 90%;
   margin: auto;
-}
-.boutique ul {
   list-style: none;
 }
-.boutique ul .article {
+.boutique .articles .article {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -204,25 +218,29 @@ header ul a img {
   color: black;
   text-decoration: none;
 }
-.boutique ul .article .image {
+.boutique .articles .article .image {
   height: 200px;
-  background-color: #f0f0f0;
-  padding: 25px;
 }
-.boutique ul .article .image .background {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.boutique ul .article .contenu {
+.boutique.ficheproduit {
+  width: 90%;
+  margin: auto;
   display: flex;
-  justify-content: space-between;
+  gap: 25px;
+}
+.boutique.ficheproduit .image {
+  height: 250px;
+  width: 50%;
+}
+.boutique.ficheproduit .contenu {
+  width: 50%;
+  flex-direction: column;
+}
+.boutique.ficheproduit .contenu h1 {
+  margin: 0;
 }
 
 .support .formulaire {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .support .formulaire p {
   font-size: 14px;
@@ -231,29 +249,29 @@ header ul a img {
   margin-top: 25px;
 }
 
-.accesadministrateurarticles .ajout {
+.accesadministrateur .ajout {
   margin: 0 auto 25px;
 }
-.accesadministrateurarticles .liste {
+.accesadministrateur .liste {
   width: 50%;
 }
-.accesadministrateurarticles .liste .flex {
+.accesadministrateur .liste .flex {
   display: flex;
   gap: 10px;
 }
-.accesadministrateurarticles .liste .flex .image {
+.accesadministrateur .liste .flex .image {
   width: 35%;
   background-color: #f0f0f0;
   padding: 25px;
   border-radius: 10px;
 }
-.accesadministrateurarticles .liste .flex .image .background {
+.accesadministrateur .liste .flex .image .background {
   height: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
-.accesadministrateurarticles .liste .flex .contenu {
+.accesadministrateur .liste .flex .contenu {
   width: 65%;
 }
 

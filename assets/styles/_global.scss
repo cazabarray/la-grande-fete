@@ -67,19 +67,6 @@ a {
     }
 }
 
-.banniere {
-    height: 650px;
-    background-color: variables.$rouge;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-
-    h1 {
-        color: white;
-    }
-}
-
 .formulaire {
     width: 40%;
     margin: auto;
@@ -115,6 +102,27 @@ a {
             margin: auto;
         }
     }
+}
+
+.banniere {
+    height: 500px;
+    background-color: variables.$rouge;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+
+    h1 {
+        color: white;
+    }
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .liste {

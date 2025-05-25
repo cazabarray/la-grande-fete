@@ -3,12 +3,20 @@
 {% block title %}Boutique | {{ parent() }}{% endblock %}
 
 {% block body %}
-    {% if article.image %}
-        <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.nom }}" width="300">
-    {% endif %}
+    <div class=" boutique ficheproduit">
+        <div class="image">
+            {% if article.image %}
+                <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
+            {% else %}
+                <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
+            {% endif %}
+        </div>
 
-    <p>{{ article.description }}</p>
-    <p>{{ article.prix }} €</p>
-
-    <a href="{{ path('app_panier_ajout', { id: article.id }) }}" class="bouton">Ajouter l'article au panier</a>
+        <div class="contenu">
+            <h1>{{ article.nom }}</h1>
+            <p>{{ article.description }}</p>
+            <p><strong>{{ article.prix }} €</strong></p>
+            <a href="{{ path('app_panier_ajout', { id: article.id }) }}" class="bouton">Ajouter l'article au panier</a>
+        </div>
+    </div>
 {% endblock %}

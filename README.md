@@ -1,4 +1,4 @@
-ùÀ faire
+À faire
 • Afficher l'élément actif dans les filtres | Boutique
 • Voir si l'on peut enlever les tailles des articles | Accès administrateur (articles)
 • Afficher l'image de l'articles lors de la modification | Accès administrateur (articles)

@@ -16,10 +16,10 @@
                     <p><strong>Filtrer par type</strong></p>
                     
                     {% set typeActif = app.request.query.get('type') %}
-                    <a href="{{ path('app_boutique') }}" class="{{ typeActif is empty ? 'active' : '' }}">Tous les articles</a>
+                    <a href="{{ path('app_boutique') }}" class="{{ typeActif is empty ? 'actif' : '' }}">Tous les articles</a>
 
                     {% for label, value in constant('App\\Entity\\Article::TYPES') %}
-                        <a href="{{ path('app_boutique', { type: value }) }}" class="{{ typeActif == value ? 'active' : '' }}">
+                        <a href="{{ path('app_boutique', { type: value }) }}" class="{{ typeActif == value ? 'actif' : '' }}">
                             {{ label }}
                         </a>
                     {% endfor %}

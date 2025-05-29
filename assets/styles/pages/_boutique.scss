@@ -40,6 +40,24 @@
                     &:last-of-type {
                         margin-bottom: 0;
                     }
+
+                    &.actif {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin-left: -25px;
+                        
+                        &::before {
+                            content: "";
+                            width: 15px;
+                            height: 15px;
+                            background-image: url('../images/logotype.png');
+                            background-size: contain;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                        }
+
+                    }
                 }
             }
         }

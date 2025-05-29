@@ -7,24 +7,25 @@
         <h1>Panier</h1>
 
         <div class="conteneur">
-            {% if articles %}
+            {% if panier is not empty %}
                 <ul class="articles">
-                    {% for ligne in articles %}
+                    {% for ligne in panier %}
                         <li>
                             <div class="article">
                                 <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="image">
                                     {% if ligne.article.image %}
-                                        <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
+                                        <div class="background" style="background-image: url('{{ asset('images/' ~ ligne.article.image) }}')"></div>
                                     {% else %}
                                         <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
                                     {% endif %}
                                 </a>
-                                
+
                                 <div class="contenu">
                                     <p><strong>{{ ligne.article.nom }}</strong></p>
                                     <p>{{ ligne.article.description }}</p>
-                                    <p><strong>{{ ligne.article.prix }} €</strong></p>
-
+                                    <p>Taille : {{ ligne.taille }}</p>
+                                    <p>Quantité : {{ ligne.quantite }}</p>
+                                    <p><strong>{{ ligne.sousTotal }} €</strong></p>
 
                                     <a href="{{ path('app_panier_suppression', { id: ligne.article.id }) }}" class="bouton">Retirer l'article</a>
                                 </div>
@@ -34,8 +35,7 @@
                 </ul>
 
                 <div class="total">
-                    {# <p>Total : {{ total }} €</p>
-                    <a href="{{ path('app_panier_paiement') }}" class="bouton">Passer au paiement</a> #}
+                    <p>Total : {{ total }} €</p>
                 </div>
             {% else %}
                 <p class="centre">Vous n'avez aucun article dans votre panier.</p>

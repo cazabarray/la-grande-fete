@@ -1,10 +1,10 @@
 À faire
-• Afficher l'élément actif dans les filtres | Boutique
-• Voir si l'on peut enlever les tailles des articles | Accès administrateur (articles)
-• Afficher l'image de l'articles lors de la modification | Accès administrateur (articles)
+• Mettre au propre le controller et faire de même si nécessaire pour le template | Panier
+• Refaire fonctionner le bouton pour supprimer les produits | Panier
+• Adapter le formulaire (pour le style) des fiches produit | Boutique
+• Demander la taille des produits uniquement pour les vêtements | Boutique
 • Rendre administrable les types | Accès administrateur (articles)
 • Modifier le style du champ pour les types | Accès administrateur (articles)
-• Intégrer le total | Panier
 • Coder le tunnel d'achat
 • Créer les pages statiques et les styliser
 

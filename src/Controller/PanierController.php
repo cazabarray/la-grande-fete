@@ -15,39 +15,52 @@ final class PanierController extends AbstractController
     public function index(Request $request, ArticleRepository $repo): Response
     {
         $panier = $request->getSession()->get('panier', []);
-        $articles = [];
+        $panierComplet = [];
+        $total = 0;
 
-        foreach ($panier as $id => $quantite) {
-            $article = $repo->find($id);
+        foreach ($panier as $cle => $ligne) {
+            $article = $repo->find($ligne['id']);
+
             if ($article) {
-                $articles[] = [
+                $sousTotal = $article->getPrix() * $ligne['quantite'];
+                $total += $sousTotal;
+
+                $panierComplet[] = [
                     'article' => $article,
-                    'quantite' => $quantite
+                    'taille' => $ligne['taille'],
+                    'quantite' => $ligne['quantite'],
+                    'sousTotal' => $sousTotal,
                 ];
             }
         }
 
         return $this->render('panier/index.html.twig', [
-            'articles' => $articles
+            'panier' => $panierComplet,
+            'total' => $total,
         ]);
     }
 
-
-    #[Route('/ajout/{id}', name: 'app_panier_ajout')]
-    public function ajout(Request $request, int $id): Response
+    #[Route('/ajout/{id}', name: 'app_panier_ajout', methods: ['POST'])]
+    public function ajouter(int $id, Request $request): Response
     {
-        $panier = $request->getSession()->get('panier', []);
-        
-        if (array_key_exists($id, $panier)) {
-            $panier[$id]++;
+        $taille = $request->request->get('taille');
+        $session = $request->getSession();
+        $panier = $session->get('panier', []);
+
+        $cle = $id . '-' . $taille;
+
+        if (isset($panier[$cle])) {
+            $panier[$cle]['quantite']++;
         } else {
-            $panier[$id] = 1;
+            $panier[$cle] = [
+                'id' => $id,
+                'taille' => $taille,
+                'quantite' => 1,
+            ];
         }
 
-        $request->getSession()->set('panier', $panier);
-
+        $session->set('panier', $panier);
         $this->addFlash('success', 'Article ajouté au panier avec succès.');
-
         return $this->redirectToRoute('app_panier');
     }
 

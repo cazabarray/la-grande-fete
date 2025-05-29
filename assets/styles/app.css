@@ -232,6 +232,21 @@ header ul a img {
 .boutique .conteneur .filtres .sous-conteneur a:last-of-type {
   margin-bottom: 0;
 }
+.boutique .conteneur .filtres .sous-conteneur a.actif {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: -25px;
+}
+.boutique .conteneur .filtres .sous-conteneur a.actif::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("../images/logotype.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .boutique .conteneur .articles {
   width: 70%;
   display: grid;
@@ -319,6 +334,9 @@ header ul a img {
 }
 .panier .conteneur .articles {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   list-style: none;
 }
 .panier .conteneur .articles .article {
@@ -338,12 +356,18 @@ header ul a img {
   justify-content: space-between;
 }
 .panier .conteneur .total {
+  height: fit-content;
   width: 25%;
   background-color: #f0f0f0;
 }
-.panier .conteneur .centre {
-  padding: 25vh 0;
+.panier .conteneur .total p {
   text-align: center;
+  margin: 25px 0;
+}
+.panier .conteneur .centre {
+  width: 100%;
+  text-align: center;
+  padding: 25vh 0;
 }
 
 /*# sourceMappingURL=app.css.map */

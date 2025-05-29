@@ -82,7 +82,7 @@ a {
   margin-left: 10px;
   padding: 0 10px;
 }
-.formulaire form div input, .formulaire form div textarea {
+.formulaire form div input, .formulaire form div textarea, .formulaire form div select {
   border: solid 2px #dc353d;
   font-family: "Ubuntu", sans-serif;
   padding: 15px;
@@ -205,20 +205,48 @@ header ul a img {
   display: flex;
   justify-content: space-between;
 }
-.boutique .articles {
+.boutique .conteneur {
   width: 90%;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.boutique .conteneur .filtres {
+  height: fit-content;
+  width: 25%;
+  background-color: #f0f0f0;
+}
+.boutique .conteneur .filtres .sous-conteneur {
+  width: fit-content;
+  margin: 50px auto;
+}
+.boutique .conteneur .filtres .sous-conteneur p, .boutique .conteneur .filtres .sous-conteneur a {
+  display: block;
+}
+.boutique .conteneur .filtres .sous-conteneur p {
+  margin-bottom: 25px;
+}
+.boutique .conteneur .filtres .sous-conteneur a {
+  margin-bottom: 10px;
+}
+.boutique .conteneur .filtres .sous-conteneur a:last-of-type {
+  margin-bottom: 0;
+}
+.boutique .conteneur .articles {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
   list-style: none;
 }
-.boutique .articles .article {
-  width: 30%;
+.boutique .conteneur .articles .article {
   display: flex;
   flex-direction: column;
   gap: 10px;
   color: black;
   text-decoration: none;
 }
-.boutique .articles .article .image {
+.boutique .conteneur .articles .article .image {
   height: 200px;
 }
 .boutique.ficheproduit {
@@ -263,7 +291,7 @@ header ul a img {
   gap: 10px;
 }
 .accesadministrateur .liste .flex .image {
-  width: 35%;
+  width: 20%;
   background-color: #f0f0f0;
   padding: 25px;
   border-radius: 10px;
@@ -274,8 +302,8 @@ header ul a img {
   background-position: center;
   background-repeat: no-repeat;
 }
-.accesadministrateur .liste .flex .contenu {
-  width: 65%;
+.accesadministrateur .liste .flex .conteneur {
+  width: 75%;
 }
 
 .panier {

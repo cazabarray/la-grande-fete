@@ -6,8 +6,10 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ArticleForm extends AbstractType
 {
@@ -15,7 +17,11 @@ class ArticleForm extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('description')
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'rows' => 5,
+                ],
+            ])
             ->add('prix')
             ->add('image', FileType::class, [
                 'label' => 'Image',
@@ -29,7 +35,10 @@ class ArticleForm extends AbstractType
                     ])
                 ],
             ])
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices' => Article::TYPES,
+                'placeholder' => '',
+            ])
             ->add('taille')
         ;
     }

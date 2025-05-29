@@ -31,8 +31,7 @@ final class SupportController extends AbstractController
                 $em->flush();
 
                 return $this->redirectToRoute('app_support');
-            }
-            else {
+            } else {
                 return $this->redirectToRoute('app_login');
             }
         }

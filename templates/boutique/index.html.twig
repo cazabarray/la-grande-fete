@@ -10,25 +10,42 @@
 
         <h2>Nos articles</h2>
 
-        <ul class="articles">
-            {% for article in articles %}
-                <li>
-                    <a href="{{ path('app_boutique_article', { id: article.id }) }}" class="article">
-                        <div class="image">
-                            {% if article.image %}
-                                <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
-                            {% else %}
-                                <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="contenu">
-                            <p><strong>{{ article.nom }}</strong></p>
-                            <p><strong>{{ article.prix }} €</strong></p>
-                        </div>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+        <div class="conteneur">
+            <div class="filtres">
+                <div class="sous-conteneur">
+                    <p><strong>Filtrer par type</strong></p>
+                    
+                    {% set typeActif = app.request.query.get('type') %}
+                    <a href="{{ path('app_boutique') }}" class="{{ typeActif is empty ? 'active' : '' }}">Tous les articles</a>
+
+                    {% for label, value in constant('App\\Entity\\Article::TYPES') %}
+                        <a href="{{ path('app_boutique', { type: value }) }}" class="{{ typeActif == value ? 'active' : '' }}">
+                            {{ label }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <ul class="articles">
+                {% for article in articles %}
+                    <li>
+                        <a href="{{ path('app_boutique_article', { id: article.id }) }}" class="article">
+                            <div class="image">
+                                {% if article.image %}
+                                    <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
+                                {% else %}
+                                    <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="contenu">
+                                <p><strong>{{ article.nom }}</strong></p>
+                                <p><strong>{{ article.prix }} €</strong></p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

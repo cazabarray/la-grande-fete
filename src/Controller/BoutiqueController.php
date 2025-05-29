@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ArticleRepository;
 use App\Entity\Article;
 
@@ -12,10 +13,19 @@ use App\Entity\Article;
 final class BoutiqueController extends AbstractController
 {
     #[Route(name: 'app_boutique')]
-    public function index(ArticleRepository $repo): Response
+    public function index(Request $request, ArticleRepository $repo): Response
     {
+        $type = $request->query->get('type');
+
+        if ($type) {
+            $articles = $repo->findBy(['type' => $type]);
+        } else {
+            $articles = $repo->findAll();
+        }
+
         return $this->render('boutique/index.html.twig', [
-            'articles' => $repo->findAll(),
+            'articles' => $articles,
+            'typeActif' => $type,
         ]);
     }
 

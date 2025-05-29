@@ -23,11 +23,6 @@
                                 <p>{{ article.nom }}</p>
                                 <p class="bulle">{{ article.prix }} €</p>
                                 <p>{{ article.description }}</p>
-
-                                {% if article.image %}
-                                    <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.nom }}">
-                                {% endif %}
-
                                 <p>{{ article.type }}</p>
 
                                 {% if article.taille %}

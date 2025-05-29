@@ -227,6 +227,9 @@ header ul a img {
   display: flex;
   gap: 25px;
 }
+.boutique.ficheproduit h1::after {
+  border-color: #dc353d;
+}
 .boutique.ficheproduit .image {
   height: 250px;
   width: 50%;
@@ -275,7 +278,42 @@ header ul a img {
   width: 65%;
 }
 
-.panier .centre {
+.panier {
+  width: 75%;
+  margin: auto;
+}
+.panier h1::after {
+  border-color: #dc353d;
+}
+.panier .conteneur {
+  display: flex;
+  justify-content: space-between;
+}
+.panier .conteneur .articles {
+  width: 70%;
+  list-style: none;
+}
+.panier .conteneur .articles .article {
+  display: flex;
+  gap: 25px;
+}
+.panier .conteneur .articles .article .image {
+  height: 200px;
+  width: 25%;
+  background-color: #f0f0f0;
+  padding: 25px;
+}
+.panier .conteneur .articles .article .contenu {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.panier .conteneur .total {
+  width: 25%;
+  background-color: #f0f0f0;
+}
+.panier .conteneur .centre {
   padding: 25vh 0;
   text-align: center;
 }

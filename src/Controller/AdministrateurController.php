@@ -13,9 +13,10 @@ use App\Form\AdministrateurutilisateurForm;
 use App\Repository\ArticleRepository;
 use App\Entity\Article;
 use App\Form\ArticleForm;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Filesystem\Filesystem;
 use App\Repository\TicketRepository;
 use App\Entity\Ticket;
-use App\Form\AdministrateurticketForm;
 
 #[Route('/administrateur')]
 final class AdministrateurController extends AbstractController
@@ -44,7 +45,7 @@ final class AdministrateurController extends AbstractController
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             $user->setRoles(array_merge($user->getRoles(), ['ROLE_ADMIN']));
             $em->flush();
-            $this->addFlash('success', 'Utilisateur promu en administrateur.');
+            $this->addFlash('success', 'Utilisateur promu en administrateur avec succès.');
         }
 
         return $this->redirectToRoute('app_administrateur_utilisateurs');
@@ -58,7 +59,7 @@ final class AdministrateurController extends AbstractController
         $user->setRoles($newRoles);
         $em->flush();
 
-        $this->addFlash('success', 'Administrateur rétrogradé en utilisateur.');
+        $this->addFlash('success', 'Administrateur rétrogradé en utilisateur avec succès.');
 
         return $this->redirectToRoute('app_administrateur_utilisateurs');
     }
@@ -93,6 +94,19 @@ final class AdministrateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+
+            if ($image instanceof UploadedFile) {
+                $nomFichier = uniqid() . '.' . $image->guessExtension();
+
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $nomFichier
+                );
+
+                $article->setImage($nomFichier);
+            }
+
             $em->persist($article);
             $em->flush();
             $this->addFlash('success', 'Article ajouté avec succès.');
@@ -112,6 +126,24 @@ final class AdministrateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+
+            if ($image instanceof UploadedFile) {
+                $ancienFichier = $article->getImage();
+
+                $nomFichier = uniqid() . '.' . $image->guessExtension();
+                $image->move($this->getParameter('images_directory'), $nomFichier);
+
+                $article->setImage($nomFichier);
+
+                if ($ancienFichier) {
+                    $chemin = $this->getParameter('images_directory') . '/' . $ancienFichier;
+                    if (file_exists($chemin)) {
+                        unlink($chemin);
+                    }
+                }
+            }
+
             $em->flush();
             $this->addFlash('success', 'Article modifié avec succès.');
             return $this->redirectToRoute('app_administrateur_articles');
@@ -127,6 +159,16 @@ final class AdministrateurController extends AbstractController
     public function supprimessionArticle(Article $article, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('suppression-article' . $article->getId(), $request->request->get('_token'))) {
+            $image = $article->getImage();
+
+            if ($image) {
+                $chemin = $this->getParameter('images_directory') . '/' . $image;
+                
+                if (file_exists($chemin)) {
+                    unlink($chemin);
+                }
+            }
+
             $em->remove($article);
             $em->flush();
             $this->addFlash('success', 'Article supprimé avec succès.');

@@ -4,31 +4,42 @@
 
 {% block body %}
     <div class="panier">
-        {% if articles %}
-            <ul class="articles">
-                {% for ligne in articles %}
-                    <li>
-                        <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="article">
-                            <div class="image">
-                                {% if ligne.article.image %}
-                                    <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
-                                {% else %}
-                                    <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
-                                {% endif %}
-                            </div>
-                            
-                            <div class="contenu">
-                                <p><strong>{{ ligne.article.nom }}</strong></p>
-                                <p><strong>{{ ligne.article.prix }} €</strong></p>
-                            </div>
-                        </a>
+        <h1>Panier</h1>
 
-                        <a href="{{ path('app_panier_suppression', { id: ligne.article.id }) }}" class="bouton">Retirer l'article</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="centre">Vous n'avez aucun article dans votre panier.</p>
-        {% endif %}
+        <div class="conteneur">
+            {% if articles %}
+                <ul class="articles">
+                    {% for ligne in articles %}
+                        <li>
+                            <div class="article">
+                                <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="image">
+                                    {% if ligne.article.image %}
+                                        <div class="background" style="background-image: url('{{ asset('images/' ~ article.image) }}')"></div>
+                                    {% else %}
+                                        <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
+                                    {% endif %}
+                                </a>
+                                
+                                <div class="contenu">
+                                    <p><strong>{{ ligne.article.nom }}</strong></p>
+                                    <p>{{ ligne.article.description }}</p>
+                                    <p><strong>{{ ligne.article.prix }} €</strong></p>
+
+
+                                    <a href="{{ path('app_panier_suppression', { id: ligne.article.id }) }}" class="bouton">Retirer l'article</a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="total">
+                    {# <p>Total : {{ total }} €</p>
+                    <a href="{{ path('app_panier_paiement') }}" class="bouton">Passer au paiement</a> #}
+                </div>
+            {% else %}
+                <p class="centre">Vous n'avez aucun article dans votre panier.</p>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

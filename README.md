@@ -1,8 +1,8 @@
 À faire
-• Styliser le panier
-• Coder l'intégration des images produit
-• Créer les pages statiques et les styliser
 • Coder le tunnel d'achat
+• Intégrer le total dans le panier
+• Créer les pages statiques et les styliser
+• Préconfigurer les types d'article et les tailles | Accès administrateur
 
 Une fois le site terminé
 • Voir le fonctionnement des message d'erreur et les configurer comme il faut | Global
@@ -10,7 +10,6 @@ Une fois le site terminé
 
 Améliorations
 • Coder un système de filtre | Boutique
-• Préconfigurer les types d'article et les tailles | Accès administrateur
 • Configurer la connexion automatique après la création d'un compte | Inscription
 • Configurer la mise en mémoire d'un compte lors de sa connexion | Connexion
-• Configurer une fonctionnalité pour les mots de passe oubliés | Connexion
+• Coder une fonctionnalité pour les mots de passe oubliés | Connexion

@@ -2,7 +2,7 @@
 
 .boutique {
     .image {
-        background-color: #f0f0f0;
+        background-color: variables.$gris;
         padding: 25px;
     }
 
@@ -35,6 +35,10 @@
         margin: auto;
         display: flex;
         gap: 25px;
+
+        h1::after {
+            border-color: variables.$rouge;
+        }
 
         .image {
             height: 250px;

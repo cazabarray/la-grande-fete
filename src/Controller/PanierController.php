@@ -15,39 +15,49 @@ final class PanierController extends AbstractController
     public function index(Request $request, ArticleRepository $repo): Response
     {
         $panier = $request->getSession()->get('panier', []);
-        $panierComplet = [];
+        $donneesPanier = [];
         $total = 0;
 
         foreach ($panier as $cle => $ligne) {
             $article = $repo->find($ligne['id']);
+            if (!$article) continue;
 
-            if ($article) {
-                $sousTotal = $article->getPrix() * $ligne['quantite'];
-                $total += $sousTotal;
+            $sousTotal = $article->getPrix() * $ligne['quantite'];
+            $total += $sousTotal;
 
-                $panierComplet[] = [
-                    'article' => $article,
-                    'taille' => $ligne['taille'],
-                    'quantite' => $ligne['quantite'],
-                    'sousTotal' => $sousTotal,
-                ];
-            }
+            $donneesPanier[] = [
+                'cle' => $cle,
+                'article' => $article,
+                'taille' => $ligne['taille'],
+                'quantite' => $ligne['quantite'],
+                'sousTotal' => $sousTotal,
+            ];
         }
 
         return $this->render('panier/index.html.twig', [
-            'panier' => $panierComplet,
+            'panier' => $donneesPanier,
             'total' => $total,
         ]);
     }
 
-    #[Route('/ajout/{id}', name: 'app_panier_ajout', methods: ['POST'])]
-    public function ajouter(int $id, Request $request): Response
+    #[Route('/{id}/ajout', name: 'app_panier_ajout', methods: ['POST'])]
+    public function ajout(int $id, Request $request, ArticleRepository $repo): Response
     {
+        $article = $repo->find($id);
         $taille = $request->request->get('taille');
+
+        if ($article->getType() === 'Vêtement' && !$taille) {
+            $this->addFlash('error', 'Vous devez sélectionner une taille.');
+            return $this->redirectToRoute('app_boutique_article', ['id' => $id]);
+        }
+
+        if ($article->getType() !== 'Vêtement') {
+            $taille = null;
+        }
+
+        $cle = $id . '-' . ($taille ?? '');
         $session = $request->getSession();
         $panier = $session->get('panier', []);
-
-        $cle = $id . '-' . $taille;
 
         if (isset($panier[$cle])) {
             $panier[$cle]['quantite']++;
@@ -61,17 +71,20 @@ final class PanierController extends AbstractController
 
         $session->set('panier', $panier);
         $this->addFlash('success', 'Article ajouté au panier avec succès.');
+
         return $this->redirectToRoute('app_panier');
     }
 
-    #[Route('/suppression/{id}', name: 'app_panier_suppression')]
-    public function suppression(Request $request, int $id): Response
+    #[Route('/{id}/suppression', name: 'app_panier_suppression')]
+    public function suppression(int $id, Request $request): Response
     {
+        $taille = $request->query->get('taille');
+        $cle = $id . '-' . ($taille ?? '');
         $session = $request->getSession();
         $panier = $session->get('panier', []);
 
-        if (array_key_exists($id, $panier)) {
-            unset($panier[$id]);
+        if (isset($panier[$cle])) {
+            unset($panier[$cle]);
             $session->set('panier', $panier);
             $this->addFlash('success', 'Article retiré du panier avec succès.');
         }

@@ -5,6 +5,7 @@
 {% block body %}
     <div class="accesadministrateur">
         <a href="{{ path('app_administrateur_article_ajout') }}" class="bouton ajout">Ajouter un nouvel article</a>
+        <a href="{{ path('app_administrateur_types') }}" class="bouton ajout">Gérer les types d'article</a>
 
         <div class="liste">
             <ul>
@@ -23,11 +24,7 @@
                                 <p>{{ article.nom }}</p>
                                 <p class="bulle">{{ article.prix }} €</p>
                                 <p>{{ article.description }}</p>
-                                <p>{{ article.type }}</p>
-
-                                {% if article.taille %}
-                                    <p>{{ article.taille }}</p>
-                                {% endif %}
+                                <p>{{ article.type.nom }}</p>
                             </div>
                         </div>
 

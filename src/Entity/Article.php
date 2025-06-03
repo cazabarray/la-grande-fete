@@ -9,11 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
-    public const TYPES = [
-        'Grand Repas' => 'Grand Repas',
-        'Vêtement' => 'Vêtement',
-    ];
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -31,11 +26,10 @@ class Article
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    #[ORM\ManyToOne(targetEntity: Type::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $taille = null;
 
     public function getId(): ?int
     {
@@ -90,26 +84,14 @@ class Article
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?Type
     {
         return $this->type;
     }
 
-    public function setType(string $type): static
+    public function setType(?Type $type): static
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(?string $taille): static
-    {
-        $this->taille = $taille;
 
         return $this;
     }

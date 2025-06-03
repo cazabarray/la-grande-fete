@@ -6,7 +6,7 @@
     <div class="formulaire">
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button>{{ article.id ? 'Modifier' : 'Créer' }} l'article</button>
+            <button>{{ type.id ? 'Modifier' : 'Créer' }} le type</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

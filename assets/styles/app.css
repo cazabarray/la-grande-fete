@@ -213,7 +213,7 @@ header ul a img {
 }
 .boutique .conteneur .filtres {
   height: fit-content;
-  width: 25%;
+  width: 20%;
   background-color: #f0f0f0;
 }
 .boutique .conteneur .filtres .sous-conteneur {
@@ -248,7 +248,7 @@ header ul a img {
   background-repeat: no-repeat;
 }
 .boutique .conteneur .articles {
-  width: 70%;
+  width: 75%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;

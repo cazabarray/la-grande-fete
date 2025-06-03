@@ -86,7 +86,7 @@ final class AdministrateurController extends AbstractController
         ]);
     }
 
-    #[Route('/article/nouveau', name: 'app_administrateur_article_ajout')]
+    #[Route('/article/ajout', name: 'app_administrateur_article_ajout')]
     public function ajoutArticle(Request $request, EntityManagerInterface $em): Response
     {
         $article = new Article();
@@ -156,7 +156,7 @@ final class AdministrateurController extends AbstractController
     }
 
     #[Route('/article/{id}/suppression', name: 'app_administrateur_article_suppression', methods: ['POST'])]
-    public function supprimessionArticle(Article $article, Request $request, EntityManagerInterface $em): Response
+    public function suppressionArticle(Article $article, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('suppression-article' . $article->getId(), $request->request->get('_token'))) {
             $image = $article->getImage();
@@ -175,6 +175,60 @@ final class AdministrateurController extends AbstractController
         }
 
         return $this->redirectToRoute('app_administrateur_articles');
+    }
+
+    #[Route('/types', name: 'app_administrateur_types')]
+    public function types(\App\Repository\TypeRepository $typeRepo): Response
+    {
+        $types = $typeRepo->findAll();
+        return $this->render('administrateur/types/index.html.twig', [
+            'types' => $types,
+        ]);
+    }
+
+    #[Route('/type/ajout', name: 'app_administrateur_type_ajout')]
+    public function ajoutType(Request $request, EntityManagerInterface $em): Response
+    {
+        $type = new \App\Entity\Type();
+        $form = $this->createForm(\App\Form\TypeType::class, $type);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($type);
+            $em->flush();
+            $this->addFlash('success', 'Type ajouté avec succès.');
+            return $this->redirectToRoute('app_administrateur_type_index');
+        }
+        return $this->render('administrateur/type/form.html.twig', [
+            'form' => $form->createView(),
+            'type' => $type,
+        ]);
+    }
+
+    #[Route('/type/{id}', name: 'app_administrateur_type_modification')]
+    public function modificationType(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(\App\Form\TypeType::class, $type);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'Type modifié avec succès.');
+            return $this->redirectToRoute('app_administrateur_type_index');
+        }
+        return $this->render('administrateur/type/form.html.twig', [
+            'form' => $form->createView(),
+            'type' => $type,
+        ]);
+    }
+
+    #[Route('/type/{id}/suppression', name: 'app_administrateur_type_suppression', methods: ['POST'])]
+    public function suppressionType(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
+    {
+        if ($this->isCsrfTokenValid('suppression-type' . $type->getId(), $request->request->get('_token'))) {
+            $em->remove($type);
+            $em->flush();
+            $this->addFlash('success', 'Type supprimé avec succès.');
+        }
+        return $this->redirectToRoute('app_administrateur_type_index');
     }
 
     #[Route('/tickets', name: 'app_administrateur_tickets')]

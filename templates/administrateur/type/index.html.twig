@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des types | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="accesadministrateur">
+        <a href="{{ path('app_administrateur_type_ajout') }}" class="bouton ajout">Ajouter un type</a>
+        <a href="{{ path('app_administrateur_type_index') }}" class="bouton retour">Retour à la liste</a>
+        
+        <div class="liste">
+            <ul>
+                {% for type in types %}
+                    <li>
+                        <div class="flex">
+                            <div class="conteneur">
+                                <p>{{ type.nom }}</p>
+                            </div>
+                        </div>
+
+                        <div class="boutons">
+                            <a href="{{ path('app_administrateur_type_modification', { id: type.id }) }}" class="bouton">Modifier</a>
+                            <form method="post" action="{{ path('app_administrateur_type_suppression', { id: type.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('suppression-type' ~ type.id) }}">
+                                <button>Supprimer le type</button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

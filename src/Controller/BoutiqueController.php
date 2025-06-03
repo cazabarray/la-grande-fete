@@ -7,25 +7,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ArticleRepository;
+use App\Repository\TypeRepository;
 use App\Entity\Article;
 
 #[Route('/boutique')]
 final class BoutiqueController extends AbstractController
 {
     #[Route(name: 'app_boutique')]
-    public function index(Request $request, ArticleRepository $repo): Response
+    public function index(Request $request, ArticleRepository $repo, TypeRepository $typeRepo): Response
     {
-        $type = $request->query->get('type');
+        $typeId = $request->query->get('type');
+        $types = $typeRepo->findAll();
 
-        if ($type) {
-            $articles = $repo->findBy(['type' => $type]);
+        if ($typeId) {
+            $articles = $repo->findBy(['type' => $typeId]);
         } else {
             $articles = $repo->findAll();
         }
 
         return $this->render('boutique/index.html.twig', [
             'articles' => $articles,
-            'typeActif' => $type,
+            'typeActif' => $typeId,
+            'types' => $types,
         ]);
     }
 

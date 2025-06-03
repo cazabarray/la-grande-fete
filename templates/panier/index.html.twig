@@ -27,7 +27,7 @@
                                     <p>Quantité : {{ ligne.quantite }}</p>
                                     <p><strong>{{ ligne.sousTotal }} €</strong></p>
 
-                                    <a href="{{ path('app_panier_suppression', { id: ligne.article.id }) }}" class="bouton">Retirer l'article</a>
+                                    <a href="{{ path('app_panier_suppression', { cle: ligne.cle }) }}" class="bouton">Retirer l'article</a>
                                 </div>
                             </div>
                         </li>

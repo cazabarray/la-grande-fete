@@ -18,15 +18,16 @@
             <p><strong>{{ article.prix }} €</strong></p>
 
             <form action="{{ path('app_panier_ajout', { id: article.id }) }}" method="POST">
-                <label for="taille">Taille :</label>
-                <select name="taille" id="taille" required>
-                    <option value="">Choisir une taille</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                </select>
-
+                {% if article.type == 'Vêtement' %}
+                    <label for="taille">Taille :</label>
+                    <select name="taille" id="taille" required>
+                        <option value="">Choisir une taille</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                {% endif %}
                 <button type="submit">Ajouter au panier</button>
             </form>
         </div>

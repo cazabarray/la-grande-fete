@@ -1,6 +1,4 @@
 À faire
-• Tester tout le site avec un accent sur les types dans l'accès administrateur | Global
-• Faire un tour de tous les fichiers pour tout mettre au propre | Global
 • Intégrer des retours en arrières pour fluidifier la navigation | Global
 • Adapter le style du formulaire des fiches produit | Boutique
 • Modifier le style du champ pour les types | Accès administrateur (articles)

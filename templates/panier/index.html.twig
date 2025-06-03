@@ -23,11 +23,15 @@
                                 <div class="contenu">
                                     <p><strong>{{ ligne.article.nom }}</strong></p>
                                     <p>{{ ligne.article.description }}</p>
-                                    <p>Taille : {{ ligne.taille }}</p>
+
+                                    {% if ligne.article.type.nom == 'Vêtement' %}
+                                        <p>Taille : {{ ligne.taille }}</p>
+                                    {% endif %}
+                                    
                                     <p>Quantité : {{ ligne.quantite }}</p>
                                     <p><strong>{{ ligne.sousTotal }} €</strong></p>
 
-                                    <a href="{{ path('app_panier_suppression', { cle: ligne.cle }) }}" class="bouton">Retirer l'article</a>
+                                    <a href="{{ path('app_panier_suppression', { id: ligne.article.id, taille: ligne.taille }) }}" class="bouton">Retirer l'article</a>
                                 </div>
                             </div>
                         </li>

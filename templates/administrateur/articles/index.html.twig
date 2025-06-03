@@ -4,8 +4,10 @@
 
 {% block body %}
     <div class="accesadministrateur">
-        <a href="{{ path('app_administrateur_article_ajout') }}" class="bouton ajout">Ajouter un nouvel article</a>
-        <a href="{{ path('app_administrateur_types') }}" class="bouton ajout">Gérer les types d'article</a>
+        <div class="boutons">
+            <a href="{{ path('app_administrateur_article_ajout') }}" class="bouton espace">Ajouter un nouvel article</a>
+            <a href="{{ path('app_administrateur_articles_types') }}" class="bouton espace">Gérer les types d'article</a>
+        </div>
 
         <div class="liste">
             <ul>
@@ -30,6 +32,7 @@
 
                         <div class="boutons">
                             <a href="{{ path('app_administrateur_article_modification', { id: article.id }) }}" class="bouton">Modifier l'article</a>
+
                             <form method="post" action="{{ path('app_administrateur_article_suppression', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('suppression-article' ~ article.id) }}">
                                 <button>Supprimer l'article</button>

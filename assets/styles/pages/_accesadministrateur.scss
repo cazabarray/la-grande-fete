@@ -1,10 +1,6 @@
 @use "../variables";
 
 .accesadministrateur {
-    .ajout {
-        margin: 0 auto 25px;
-    }
-
     .liste {
         width: 50%;
 
@@ -30,5 +26,13 @@
                 width: 75%;
             }
         }
+    }
+
+    .espace {
+        margin-bottom: 25px;
+    }
+
+    .ajout {
+        margin: 0 auto 25px;
     }
 }

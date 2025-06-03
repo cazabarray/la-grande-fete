@@ -19,7 +19,6 @@ final class SupportController extends AbstractController
     public function index(Security $security, Request $request, EntityManagerInterface $em, TicketRepository $repo): Response
     {
         $user = $security->getUser();
-
         $ticket = new Ticket();
         $form = $this->createForm(TicketForm::class, $ticket);
         $form->handleRequest($request);
@@ -60,7 +59,9 @@ final class SupportController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+
             $this->addFlash('success', 'Ticket modifié avec succès.');
+
             return $this->redirectToRoute('app_support');
         }
 
@@ -76,13 +77,16 @@ final class SupportController extends AbstractController
         $user = $security->getUser();
 
         if ($ticket->getUser() !== $user) {
+
             $this->addFlash('error', 'Vous ne pouvez supprimer que vos tickets.');
+
             return $this->redirectToRoute('app_support');
         }
 
         if ($this->isCsrfTokenValid('delete-ticket-' . $ticket->getId(), $request->request->get('_token'))) {
             $em->remove($ticket);
             $em->flush();
+            
             $this->addFlash('success', 'Ticket supprimé avec succès.');
         }
 

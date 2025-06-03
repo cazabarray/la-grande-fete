@@ -67,6 +67,12 @@ a {
     }
 }
 
+.boutons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 .formulaire {
     width: 40%;
     margin: auto;
@@ -171,12 +177,6 @@ a {
                         color: green;
                     }
                 }
-            }
-
-            .boutons {
-                display: flex;
-                justify-content: center;
-                gap: 10px;
             }
         }
     }

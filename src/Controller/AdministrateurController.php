@@ -7,14 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UserRepository;
 use App\Entity\User;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Form\AdministrateurutilisateurForm;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ArticleRepository;
 use App\Entity\Article;
 use App\Form\ArticleForm;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Filesystem\Filesystem;
 use App\Repository\TicketRepository;
 use App\Entity\Ticket;
 
@@ -45,6 +43,7 @@ final class AdministrateurController extends AbstractController
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             $user->setRoles(array_merge($user->getRoles(), ['ROLE_ADMIN']));
             $em->flush();
+
             $this->addFlash('success', 'Utilisateur promu en administrateur avec succès.');
         }
 
@@ -55,7 +54,6 @@ final class AdministrateurController extends AbstractController
     public function retrogradationUtilisateur(User $user, EntityManagerInterface $em): Response
     {
         $newRoles = array_filter($user->getRoles(), fn($r) => $r !== 'ROLE_ADMIN');
-
         $user->setRoles($newRoles);
         $em->flush();
 
@@ -65,11 +63,12 @@ final class AdministrateurController extends AbstractController
     }
 
     #[Route('/utilisateur/{id}/suppression', name: 'app_administrateur_utilisateur_suppression', methods: ['POST'])]
-    public function suppressionUtilisateur(User $user,Request $request, EntityManagerInterface $em): Response
+    public function suppressionUtilisateur(User $user, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete-user-' . $user->getId(), $request->request->get('_token'))) {
             $em->remove($user);
             $em->flush();
+
             $this->addFlash('success', 'Utilisateur supprimé avec succès.');
         }
 
@@ -98,18 +97,15 @@ final class AdministrateurController extends AbstractController
 
             if ($image instanceof UploadedFile) {
                 $nomFichier = uniqid() . '.' . $image->guessExtension();
-
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $nomFichier
-                );
-
+                $image->move($this->getParameter('images_directory'), $nomFichier);
                 $article->setImage($nomFichier);
             }
 
             $em->persist($article);
             $em->flush();
+
             $this->addFlash('success', 'Article ajouté avec succès.');
+
             return $this->redirectToRoute('app_administrateur_articles');
         }
 
@@ -130,14 +126,13 @@ final class AdministrateurController extends AbstractController
 
             if ($image instanceof UploadedFile) {
                 $ancienFichier = $article->getImage();
-
                 $nomFichier = uniqid() . '.' . $image->guessExtension();
                 $image->move($this->getParameter('images_directory'), $nomFichier);
-
                 $article->setImage($nomFichier);
 
                 if ($ancienFichier) {
                     $chemin = $this->getParameter('images_directory') . '/' . $ancienFichier;
+
                     if (file_exists($chemin)) {
                         unlink($chemin);
                     }
@@ -145,7 +140,9 @@ final class AdministrateurController extends AbstractController
             }
 
             $em->flush();
+
             $this->addFlash('success', 'Article modifié avec succès.');
+
             return $this->redirectToRoute('app_administrateur_articles');
         }
 
@@ -171,64 +168,75 @@ final class AdministrateurController extends AbstractController
 
             $em->remove($article);
             $em->flush();
+
             $this->addFlash('success', 'Article supprimé avec succès.');
         }
 
         return $this->redirectToRoute('app_administrateur_articles');
     }
 
-    #[Route('/types', name: 'app_administrateur_types')]
-    public function types(\App\Repository\TypeRepository $typeRepo): Response
+    #[Route('articles/types', name: 'app_administrateur_articles_types')]
+    public function typesArticles(\App\Repository\TypeRepository $typeRepo): Response
     {
         $types = $typeRepo->findAll();
-        return $this->render('administrateur/types/index.html.twig', [
+
+        return $this->render('administrateur/articles/types/index.html.twig', [
             'types' => $types,
         ]);
     }
 
-    #[Route('/type/ajout', name: 'app_administrateur_type_ajout')]
-    public function ajoutType(Request $request, EntityManagerInterface $em): Response
+    #[Route('articles/type/ajout', name: 'app_administrateur_articles_type_ajout')]
+    public function ajoutTypeArticles(Request $request, EntityManagerInterface $em): Response
     {
         $type = new \App\Entity\Type();
-        $form = $this->createForm(\App\Form\TypeType::class, $type);
+        $form = $this->createForm(\App\Form\TypeForm::class, $type);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($type);
             $em->flush();
+
             $this->addFlash('success', 'Type ajouté avec succès.');
-            return $this->redirectToRoute('app_administrateur_type_index');
+
+            return $this->redirectToRoute('app_administrateur_articles_types');
         }
-        return $this->render('administrateur/type/form.html.twig', [
+
+        return $this->render('administrateur/articles/types/form.html.twig', [
             'form' => $form->createView(),
             'type' => $type,
         ]);
     }
 
-    #[Route('/type/{id}', name: 'app_administrateur_type_modification')]
-    public function modificationType(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
+    #[Route('articles/type/{id}', name: 'app_administrateur_articles_type_modification')]
+    public function modificationTypeArticles(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(\App\Form\TypeType::class, $type);
+        $form = $this->createForm(\App\Form\TypeForm::class, $type);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+
             $this->addFlash('success', 'Type modifié avec succès.');
-            return $this->redirectToRoute('app_administrateur_type_index');
+
+            return $this->redirectToRoute('app_administrateur_articles_types');
         }
-        return $this->render('administrateur/type/form.html.twig', [
+
+        return $this->render('administrateur/articles/types/form.html.twig', [
             'form' => $form->createView(),
             'type' => $type,
         ]);
     }
 
-    #[Route('/type/{id}/suppression', name: 'app_administrateur_type_suppression', methods: ['POST'])]
-    public function suppressionType(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
+    #[Route('articles/type/{id}/suppression', name: 'app_administrateur_articles_type_suppression', methods: ['POST'])]
+    public function suppressionTypeArticles(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('suppression-type' . $type->getId(), $request->request->get('_token'))) {
             $em->remove($type);
             $em->flush();
+
             $this->addFlash('success', 'Type supprimé avec succès.');
         }
-        return $this->redirectToRoute('app_administrateur_type_index');
+        return $this->redirectToRoute('app_administrateur_articles_types');
     }
 
     #[Route('/tickets', name: 'app_administrateur_tickets')]
@@ -248,6 +256,7 @@ final class AdministrateurController extends AbstractController
         $em->flush();
 
         $this->addFlash('success', 'Statut du ticket modifié avec succès.');
+
         return $this->redirectToRoute('app_administrateur_tickets');
     }
 
@@ -257,6 +266,7 @@ final class AdministrateurController extends AbstractController
         if ($this->isCsrfTokenValid('suppression-ticket' . $ticket->getId(), $request->request->get('_token'))) {
             $em->remove($ticket);
             $em->flush();
+
             $this->addFlash('success', 'Ticket supprimé avec succès.');
         }
 

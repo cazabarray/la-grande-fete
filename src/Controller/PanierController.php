@@ -20,6 +20,7 @@ final class PanierController extends AbstractController
 
         foreach ($panier as $cle => $ligne) {
             $article = $repo->find($ligne['id']);
+
             if (!$article) continue;
 
             $sousTotal = $article->getPrix() * $ligne['quantite'];
@@ -46,12 +47,12 @@ final class PanierController extends AbstractController
         $article = $repo->find($id);
         $taille = $request->request->get('taille');
 
-        if ($article->getType() === 'Vêtement' && !$taille) {
-            $this->addFlash('error', 'Vous devez sélectionner une taille.');
-            return $this->redirectToRoute('app_boutique_article', ['id' => $id]);
-        }
+        if ($article->getType()->getNom() === 'Vêtement' && !$taille) {
 
-        if ($article->getType() !== 'Vêtement') {
+            $this->addFlash('error', 'Vous devez sélectionner une taille.');
+
+            return $this->redirectToRoute('app_boutique_article', ['id' => $id]);
+        } else {
             $taille = null;
         }
 
@@ -70,6 +71,7 @@ final class PanierController extends AbstractController
         }
 
         $session->set('panier', $panier);
+
         $this->addFlash('success', 'Article ajouté au panier avec succès.');
 
         return $this->redirectToRoute('app_panier');
@@ -86,7 +88,8 @@ final class PanierController extends AbstractController
         if (isset($panier[$cle])) {
             unset($panier[$cle]);
             $session->set('panier', $panier);
-            $this->addFlash('success', 'Article retiré du panier avec succès.');
+            
+            $this->addFlash('success', 'Article supprimé du panier avec succès.');
         }
 
         return $this->redirectToRoute('app_panier');

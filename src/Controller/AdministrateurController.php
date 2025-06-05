@@ -109,7 +109,7 @@ final class AdministrateurController extends AbstractController
             return $this->redirectToRoute('app_administrateur_articles');
         }
 
-        return $this->render('administrateur/articles/formulairearticle.html.twig', [
+        return $this->render('administrateur/articles/form.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
         ]);
@@ -146,7 +146,7 @@ final class AdministrateurController extends AbstractController
             return $this->redirectToRoute('app_administrateur_articles');
         }
 
-        return $this->render('administrateur/articles/formulairearticle.html.twig', [
+        return $this->render('administrateur/articles/form.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
         ]);

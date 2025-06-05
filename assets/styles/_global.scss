@@ -73,6 +73,18 @@ a {
     gap: 10px;
 }
 
+.retour {
+    display: flex;
+    gap: 10px;
+    width: 90%;
+    margin: 0 auto 25px;
+    text-decoration: none;
+
+    &::before {
+        content: "<<";
+    }
+}
+
 .formulaire {
     width: 40%;
     margin: auto;

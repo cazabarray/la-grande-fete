@@ -3,6 +3,8 @@
 {% block title %}Gestion des types | {{ parent() }}{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_administrateur_articles') }}" class="retour">Retour aux articles</a>
+
     <div class="accesadministrateur">
         <a href="{{ path('app_administrateur_articles_type_ajout') }}" class="bouton ajout">Ajouter un nouveau type d'article</a>
 

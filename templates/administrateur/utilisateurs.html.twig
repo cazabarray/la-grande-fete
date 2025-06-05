@@ -3,6 +3,8 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_administrateur') }}" class="retour">Retour à l'accès administrateur</a>
+
     <div class="liste">
         <ul>
             {% for user in users %}

@@ -3,6 +3,8 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_administrateur_articles') }}" class="retour">Retour aux articles</a>
+
     <div class="formulaire">
         {{ form_start(form) }}
             {{ form_widget(form) }}

@@ -67,6 +67,17 @@ a {
   gap: 10px;
 }
 
+.retour {
+  display: flex;
+  gap: 10px;
+  width: 90%;
+  margin: 0 auto 25px;
+  text-decoration: none;
+}
+.retour::before {
+  content: "<<";
+}
+
 .formulaire {
   width: 40%;
   margin: auto;
@@ -265,34 +276,24 @@ header ul a img {
 .boutique .conteneur .articles .article .image {
   height: 200px;
 }
-.boutique .retour {
-  display: flex;
-  gap: 10px;
-  width: 90%;
-  margin: 0 auto 25px;
-  text-decoration: none;
-}
-.boutique .retour::before {
-  content: "<<";
-}
-.boutique .ficheproduit {
+.boutique.ficheproduit {
   width: 90%;
   margin: auto;
   display: flex;
   gap: 25px;
 }
-.boutique .ficheproduit h1::after {
+.boutique.ficheproduit h1::after {
   border-color: #dc353d;
 }
-.boutique .ficheproduit .image {
+.boutique.ficheproduit .image {
   height: 250px;
   width: 50%;
 }
-.boutique .ficheproduit .contenu {
+.boutique.ficheproduit .contenu {
   width: 50%;
   flex-direction: column;
 }
-.boutique .ficheproduit .contenu h1 {
+.boutique.ficheproduit .contenu h1 {
   margin: 0;
 }
 

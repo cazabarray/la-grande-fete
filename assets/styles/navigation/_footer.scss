@@ -1,0 +1,30 @@
+@use '../variables';
+
+footer {
+    margin-top: 100px;
+    background-color: variables.$rouge;
+    padding: 75px 50px;
+    display: flex;
+    align-items: center;
+    gap: 225px;
+
+    img {
+        width: 7.5%;
+    }
+    
+    .conteneur {
+        list-style: none;
+
+        li {
+            text-align: center;
+
+            a {
+                font-family: variables.$font-titre;
+                font-size: 30px;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+    }
+}

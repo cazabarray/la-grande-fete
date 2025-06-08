@@ -1,0 +1,40 @@
+.partenaires {
+    .slider {
+        width: 90%;
+        margin: 0 auto 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            height: 250px;
+            width: 20%;
+        }
+    }
+
+    .flex {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            height: 500px;
+            width: 45%;
+            object-fit: cover;
+        }
+
+        div {
+            width: 55%;
+
+            p {
+                text-align: center;
+            }
+
+            .bouton {
+                margin: 25px auto 0;
+            }
+        }
+    }
+}

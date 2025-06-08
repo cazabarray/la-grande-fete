@@ -1,0 +1,111 @@
+@use "../variables";
+
+.accueil {
+    overflow: hidden;
+
+    .banniere {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .25);
+            z-index: 1;
+        }
+
+        video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    .artistes {
+        width: 90%;
+        margin: 0 auto 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+
+        .artiste {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 27.5%;
+
+            &.gros {
+                width: 30%;
+
+                div {
+                    height: 450px;
+                }
+            }
+
+            div {
+                height: 350px;
+                width: 100%;
+
+                img {
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    .rouge {
+        position: relative;
+        background-color: variables.$rouge;
+        width: 101vw;
+        left: 50%;
+        transform: translateX(-50%) rotate(-2.5deg);
+        padding: 150px 0;
+        display: flex;
+        margin-bottom: 100px;
+
+        .trait {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%) rotate(15deg);
+            height: 120%;
+            width: 5px;
+            background-color: white;
+        }
+
+        a {
+            width: 50%;
+            transform: rotate(2.5deg);
+
+            h2 {
+                color: white;
+                margin-bottom: 0;
+
+                &::after {
+                    border-color: white;
+                }
+            }
+        }
+    }
+
+    .presentation {
+        width: 50%;
+        margin: auto;
+
+        p {
+            text-align: center;
+        }
+
+        .bouton {
+            margin: 25px auto 0;
+        }
+    }
+}

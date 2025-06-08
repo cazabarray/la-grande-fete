@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partenaires | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="partenaires">
+        <div class="banniere">
+            <h1>PARTENAIRES</h1>
+        </div>
+
+        <div class="slider">
+            <img src="{{ asset('images/partenaire-1.png') }}" alt="Logotype d'un partenaire de La Grande Fête">
+            <img src="{{ asset('images/partenaire-2.png') }}" alt="Logotype d'un partenaire de La Grande Fête">
+            <img src="{{ asset('images/partenaire-3.png') }}" alt="Logotype d'un partenaire de La Grande Fête">
+            <img src="{{ asset('images/partenaire-4.png') }}" alt="Logotype d'un partenaire de La Grande Fête">
+        </div>
+
+        <h2>Devenir partenaire</h2>
+
+        <div class="flex">
+            <img src="{{ asset('images/devenir-partenaire.jpg') }}" alt="Stand de présentation de La Grande Fête">
+
+            <div>
+                <p>Vous souhaitez devenir partenaires et rejoindre l'association BIC ?</p>
+                <p>N'attendez plus et envoyez une demande pour devenir partenaire dès maintenant !</p>
+                <a href="{{ path('app_support') }}" class="bouton">Devenir partenaire</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

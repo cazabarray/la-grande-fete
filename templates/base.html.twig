@@ -28,6 +28,7 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
                         {% endif %}
+
                         <li><a href="{{ path('app_panier') }}">Panier</a></li>
                         <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                     </ul>
@@ -41,8 +42,38 @@
                 </nav>
             {% endif %}
         </header>
+        
         <main>
             {% block body %}{% endblock %}
         </main>
+
+        <footer>
+            <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
+
+            <nav>
+                <ul class="conteneur">
+                    <li><a href="{{ path('app_boutique') }}">Boutique</a></li>
+                    <li><a href="{{ path('app_support') }}">Support</a></li>
+
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
+                        {% endif %}
+
+                        <li><a href="{{ path('app_panier') }}">Panier</a></li>
+                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                        <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <nav>
+                <ul class="conteneur">
+                    <li><a href="{{ path('app_partenaires') }}">Partenaires</a></li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>

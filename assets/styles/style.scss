@@ -1,7 +1,11 @@
 @use 'global.scss';
 @use 'navigation/header.scss';
-@use 'pages/compte.scss';
+@use 'navigation/footer.scss';
+@use 'pages/accueil.scss';
 @use 'pages/boutique.scss';
 @use 'pages/support.scss';
-@use 'pages/accesadministrateur.scss';
+@use 'pages/partenaires.scss';
+@use 'pages/compte.scss';
 @use 'pages/panier.scss';
+@use 'pages/accesadministrateur.scss';
+

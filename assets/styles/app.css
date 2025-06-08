@@ -3,15 +3,16 @@
   padding: 0;
 }
 
-h1, h2, p, a, button, label, input, textarea {
+h1, h2, h3, p, a, button, label, input, textarea {
   font-weight: 400;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: "niagara", serif;
   width: fit-content;
   margin: auto;
 }
+
 h1::after, h2::after {
   content: "";
   display: block;
@@ -26,10 +27,14 @@ h1 {
 
 h2 {
   font-size: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 h2::after {
   border-top: solid 2px #dc353d;
+}
+
+h3 {
+  font-size: 35px;
 }
 
 p, a, button, label, input, textarea {
@@ -39,6 +44,12 @@ p, a, button, label, input, textarea {
 
 a {
   color: #dc353d;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .bouton, button {
@@ -61,12 +72,6 @@ a {
   content: ">>";
 }
 
-.boutons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
 .retour {
   display: flex;
   gap: 10px;
@@ -78,56 +83,19 @@ a {
   content: "<<";
 }
 
-.formulaire {
-  width: 40%;
-  margin: auto;
-}
-.formulaire form {
+.boutons {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.formulaire form div {
-  display: flex;
-  flex-direction: column;
-}
-.formulaire form div label {
-  font-family: "Ubuntu", sans-serif;
-  transform: translateY(50%);
-  background-color: white;
-  width: fit-content;
-  margin-left: 10px;
-  padding: 0 10px;
-}
-.formulaire form div input, .formulaire form div textarea, .formulaire form div select {
-  border: solid 2px #dc353d;
-  font-family: "Ubuntu", sans-serif;
-  padding: 15px;
-  border-radius: 10px;
-}
-.formulaire form button {
-  width: fit-content;
-  margin: auto;
+  justify-content: center;
+  gap: 10px;
 }
 
 .banniere {
-  height: 500px;
   background-color: #dc353d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 .banniere h1 {
   color: white;
-}
-
-.background {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  padding: 225px 0;
 }
 
 .liste {
@@ -174,6 +142,38 @@ a {
   color: green;
 }
 
+.formulaire {
+  width: 40%;
+  margin: auto;
+}
+.formulaire form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.formulaire form div {
+  display: flex;
+  flex-direction: column;
+}
+.formulaire form div label {
+  font-family: "Ubuntu", sans-serif;
+  transform: translateY(50%);
+  background-color: white;
+  width: fit-content;
+  margin-left: 10px;
+  padding: 0 10px;
+}
+.formulaire form div input, .formulaire form div textarea, .formulaire form div select {
+  border: solid 2px #dc353d;
+  font-family: "Ubuntu", sans-serif;
+  padding: 15px;
+  border-radius: 10px;
+}
+.formulaire form button {
+  width: fit-content;
+  margin: auto;
+}
+
 header {
   width: 90%;
   margin: auto;
@@ -204,9 +204,121 @@ header ul a img {
   margin: 10px 0;
 }
 
-.compte p {
+footer {
+  margin-top: 100px;
+  background-color: #dc353d;
+  padding: 75px 50px;
+  display: flex;
+  align-items: center;
+  gap: 225px;
+}
+footer img {
+  width: 7.5%;
+}
+footer .conteneur {
+  list-style: none;
+}
+footer .conteneur li {
   text-align: center;
-  margin-top: 50px;
+}
+footer .conteneur li a {
+  font-family: "niagara", serif;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.accueil {
+  overflow: hidden;
+}
+.accueil .banniere {
+  position: relative;
+}
+.accueil .banniere::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+.accueil .banniere video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.accueil .banniere h1 {
+  position: relative;
+  z-index: 1;
+}
+.accueil .artistes {
+  width: 90%;
+  margin: 0 auto 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.accueil .artistes .artiste {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 27.5%;
+}
+.accueil .artistes .artiste.gros {
+  width: 30%;
+}
+.accueil .artistes .artiste.gros div {
+  height: 450px;
+}
+.accueil .artistes .artiste div {
+  height: 350px;
+  width: 100%;
+}
+.accueil .artistes .artiste div img {
+  object-fit: cover;
+}
+.accueil .rouge {
+  position: relative;
+  background-color: #dc353d;
+  width: 101vw;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2.5deg);
+  padding: 150px 0;
+  display: flex;
+  margin-bottom: 100px;
+}
+.accueil .rouge .trait {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%) rotate(15deg);
+  height: 120%;
+  width: 5px;
+  background-color: white;
+}
+.accueil .rouge a {
+  width: 50%;
+  transform: rotate(2.5deg);
+}
+.accueil .rouge a h2 {
+  color: white;
+  margin-bottom: 0;
+}
+.accueil .rouge a h2::after {
+  border-color: white;
+}
+.accueil .presentation {
+  width: 50%;
+  margin: auto;
+}
+.accueil .presentation p {
+  text-align: center;
+}
+.accueil .presentation .bouton {
+  margin: 25px auto 0;
 }
 
 .boutique .image {
@@ -307,33 +419,42 @@ header ul a img {
   margin-top: 25px;
 }
 
-.accesadministrateur .liste {
-  width: 50%;
-}
-.accesadministrateur .liste .flex {
+.partenaires .slider {
+  width: 90%;
+  margin: 0 auto 100px;
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
-.accesadministrateur .liste .flex .image {
+.partenaires .slider img {
+  height: 250px;
   width: 20%;
-  background-color: #f0f0f0;
-  padding: 25px;
-  border-radius: 10px;
 }
-.accesadministrateur .liste .flex .image .background {
-  height: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+.partenaires .flex {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.accesadministrateur .liste .flex .conteneur {
-  width: 75%;
+.partenaires .flex img {
+  height: 500px;
+  width: 45%;
+  object-fit: cover;
 }
-.accesadministrateur .espace {
-  margin-bottom: 25px;
+.partenaires .flex div {
+  width: 55%;
 }
-.accesadministrateur .ajout {
-  margin: 0 auto 25px;
+.partenaires .flex div p {
+  text-align: center;
+}
+.partenaires .flex div .bouton {
+  margin: 25px auto 0;
+}
+
+.compte p {
+  text-align: center;
+  margin-top: 50px;
 }
 
 .panier {
@@ -383,6 +504,29 @@ header ul a img {
   width: 100%;
   text-align: center;
   padding: 25vh 0;
+}
+
+.accesadministrateur .liste {
+  width: 50%;
+}
+.accesadministrateur .liste .flex {
+  display: flex;
+  gap: 10px;
+}
+.accesadministrateur .liste .flex .image {
+  width: 20%;
+  background-color: #f0f0f0;
+  padding: 25px;
+  border-radius: 10px;
+}
+.accesadministrateur .liste .flex .conteneur {
+  width: 75%;
+}
+.accesadministrateur .espace {
+  margin-bottom: 25px;
+}
+.accesadministrateur .ajout {
+  margin: 0 auto 25px;
 }
 
 /*# sourceMappingURL=app.css.map */

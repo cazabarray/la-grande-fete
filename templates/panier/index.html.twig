@@ -14,9 +14,9 @@
                             <div class="article">
                                 <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="image">
                                     {% if ligne.article.image %}
-                                        <div class="background" style="background-image: url('{{ asset('images/' ~ ligne.article.image) }}')"></div>
+                                        <img src="{{ asset('images/' ~ ligne.article.image) }}" alt="{{ ligne.article.nom }}">
                                     {% else %}
-                                        <div class="background" style="background-image: url('{{ asset('images/logotype.png') }}')"></div>
+                                        <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
                                     {% endif %}
                                 </a>
 

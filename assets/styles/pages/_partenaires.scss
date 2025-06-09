@@ -30,6 +30,10 @@
 
             p {
                 text-align: center;
+
+                &:first-of-type {
+                    margin-bottom: 25px;
+                }
             }
 
             .bouton {

@@ -1,0 +1,42 @@
+.qui-sommes-nous {
+    .conteneur {
+        width: 90%;
+        margin: 0 auto 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div, img {
+            width: 50%;
+        }
+
+        &:last-of-type {
+            img {
+                height: 500px;
+                width: 40%;
+                object-fit: cover;
+            }
+
+            div {
+                width: 60%;
+
+                p {
+                    text-align: center;
+                }
+
+                a {
+                    margin: 25px auto 0;
+                }
+            }
+        }
+
+        p {
+            width: 90%;
+            margin: 0 auto 25px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

@@ -17,6 +17,8 @@
             <nav>
                 <ul class="pages">
                     <li><a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête"></a></li>
+                    <li><a href="{{ path('app_programme') }}">Programme</a></li>
+                    <li><a href="{{ path('app_grand_repas') }}">Grand Repas</a></li>
                     <li><a href="{{ path('app_boutique') }}">Boutique</a></li>
                     <li><a href="{{ path('app_support') }}">Support</a></li>
                 </ul>
@@ -48,10 +50,12 @@
         </main>
 
         <footer>
-            <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
+            <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête"></a>
 
             <nav>
                 <ul class="conteneur">
+                    <li><a href="{{ path('app_programme') }}">Programme</a></li>
+                    <li><a href="{{ path('app_grand_repas') }}">Grand Repas</a></li>
                     <li><a href="{{ path('app_boutique') }}">Boutique</a></li>
                     <li><a href="{{ path('app_support') }}">Support</a></li>
 
@@ -71,6 +75,7 @@
 
             <nav>
                 <ul class="conteneur">
+                    <li><a href="{{ path('app_qui_sommes_nous') }}">Qui sommes-nous ?</a></li>
                     <li><a href="{{ path('app_partenaires') }}">Partenaires</a></li>
                 </ul>
             </nav>

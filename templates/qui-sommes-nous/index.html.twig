@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes-nous ? | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="qui-sommes-nous">
+        <div class="banniere">
+            <h1>QUI SOMMES-NOUS ?</h1>
+        </div>
+
+        <h2>L'association BIC</h2>
+
+        <div class="conteneur">
+            <div>
+                <p>La <strong>BIC (Brigade d'Intervention Culturelle)</strong> est une équipe de bénévoles passionnés qui organise “La Grande Fête” chaque année au début du mois de Septembre à Ayguemorte Les Graves, un rassemblement festif, culturel et citoyen devenu un incontournable de la rentrée en Gironde.</p>
+                <p><strong>Notre ADN</strong> : accès à la culture pour toutes et tous, rassembler toutes les générations autour de moments forts de convivialité et de partage, faire des circuits courts et du développement durable une priorité dans le cadre de nos projets.</p>
+                <p>Nous travaillons également tout au long de l'année sur l'organisation de manifestations culturelles (Ayguemorte de peur, vide grenier festif...), la mise en place de projets de médiation culturelle et mettons à profit nos savoir-faire en tant que conseil à la programmation ou au montage de projet culturels, toujours en lien avec les institutionnels et/ou le monde associatif ou privé local.</p>
+                <p>Enfin, nous avons pour ambition d'étendre à plus long terme nos actions à des projets de territoire d'actions culturelles envers différents publics et en particulier les plus jeunes.</p>
+            </div>
+
+            <img src="{{ asset('images/equipe.jpg') }}" alt="Équipe de la BIC">
+        </div>
+
+        <div class="conteneur">
+            <img src="{{ asset('images/repas.jpg') }}" alt="Préparation de repas par l'équipe de la BIC">
+
+            <div>
+                <h2>Devenir bénévole</h2>
+                <p>Vous souhaitez devenir bénévole et rejoindre l'association BIC ?</p>
+                <p>N'attendez plus et envoyez une demande pour devenir bénévole dès maintenant !</p>
+                <a href="{{ path('app_support') }}" class="bouton">Devenir bénévole</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

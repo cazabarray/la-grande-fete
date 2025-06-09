@@ -1,0 +1,31 @@
+.grand-repas {
+    .conteneur {
+        width: fit-content;
+        margin: 0 auto 25px;
+    }
+    
+    .flex {
+        width: 75%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            width: 40%;
+        }
+
+        .contenu {
+            width: 60%;
+
+            div {
+                width: fit-content;
+                margin: auto;
+            }
+        }
+    }
+
+    a {
+        margin: 25px auto 0;
+    }
+}

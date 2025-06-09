@@ -40,7 +40,7 @@ h3 {
     font-size: 35px;
 }
 
-p, a, button, label, input, textarea {
+p, a, li, button, label, input, textarea {
     font-family: variables.$font-texte;
     font-size: 16px;
 }
@@ -53,6 +53,10 @@ img {
     height: 100%;
     width: 100%;
     object-fit: contain;
+}
+
+ul {
+    list-style: inside;
 }
 
 .bouton, button {

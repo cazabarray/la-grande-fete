@@ -8,23 +8,19 @@ footer {
     align-items: center;
     gap: 225px;
 
-    img {
+    .logotype {
         width: 7.5%;
     }
     
     .conteneur {
         list-style: none;
 
-        li {
+        a {
+            font-family: variables.$font-titre;
+            font-size: 30px;
+            color: white;
             text-align: center;
-
-            a {
-                font-family: variables.$font-titre;
-                font-size: 30px;
-                color: white;
-                text-align: center;
-                text-decoration: none;
-            }
+            text-decoration: none;
         }
     }
 }

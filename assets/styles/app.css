@@ -37,7 +37,7 @@ h3 {
   font-size: 35px;
 }
 
-p, a, button, label, input, textarea {
+p, a, li, button, label, input, textarea {
   font-family: "montserrat", sans-serif;
   font-size: 16px;
 }
@@ -50,6 +50,10 @@ img {
   height: 100%;
   width: 100%;
   object-fit: contain;
+}
+
+ul {
+  list-style: inside;
 }
 
 .bouton, button {
@@ -212,16 +216,13 @@ footer {
   align-items: center;
   gap: 225px;
 }
-footer img {
+footer .logotype {
   width: 7.5%;
 }
 footer .conteneur {
   list-style: none;
 }
-footer .conteneur li {
-  text-align: center;
-}
-footer .conteneur li a {
+footer .conteneur a {
   font-family: "niagara", serif;
   font-size: 30px;
   color: white;
@@ -310,14 +311,39 @@ footer .conteneur li a {
 .accueil .rouge a h2::after {
   border-color: white;
 }
-.accueil .presentation {
+.accueil .qui-sommes-nous {
   width: 50%;
   margin: auto;
 }
-.accueil .presentation p {
+.accueil .qui-sommes-nous p {
   text-align: center;
 }
-.accueil .presentation .bouton {
+.accueil .qui-sommes-nous .bouton {
+  margin: 25px auto 0;
+}
+
+.grand-repas .conteneur {
+  width: fit-content;
+  margin: 0 auto 25px;
+}
+.grand-repas .flex {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.grand-repas .flex img {
+  width: 40%;
+}
+.grand-repas .flex .contenu {
+  width: 60%;
+}
+.grand-repas .flex .contenu div {
+  width: fit-content;
+  margin: auto;
+}
+.grand-repas a {
   margin: 25px auto 0;
 }
 
@@ -419,6 +445,38 @@ footer .conteneur li a {
   margin-top: 25px;
 }
 
+.qui-sommes-nous .conteneur {
+  width: 90%;
+  margin: 0 auto 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.qui-sommes-nous .conteneur div, .qui-sommes-nous .conteneur img {
+  width: 50%;
+}
+.qui-sommes-nous .conteneur:last-of-type img {
+  height: 500px;
+  width: 40%;
+  object-fit: cover;
+}
+.qui-sommes-nous .conteneur:last-of-type div {
+  width: 60%;
+}
+.qui-sommes-nous .conteneur:last-of-type div p {
+  text-align: center;
+}
+.qui-sommes-nous .conteneur:last-of-type div a {
+  margin: 25px auto 0;
+}
+.qui-sommes-nous .conteneur p {
+  width: 90%;
+  margin: 0 auto 25px;
+}
+.qui-sommes-nous .conteneur p:last-of-type {
+  margin-bottom: 0;
+}
+
 .partenaires .slider {
   width: 90%;
   margin: 0 auto 100px;
@@ -447,6 +505,9 @@ footer .conteneur li a {
 }
 .partenaires .flex div p {
   text-align: center;
+}
+.partenaires .flex div p:first-of-type {
+  margin-bottom: 25px;
 }
 .partenaires .flex div .bouton {
   margin: 25px auto 0;

@@ -43,7 +43,7 @@
                                     <a href="{{ path('app_support_modification', {id: ticket.id}) }}" class="bouton">Modifier le ticket</a>
                                     
                                     {% if ticket.user == app.user %}
-                                        <form method="post" action="{{ path('app_support_suppression', { id: ticket.id }) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
+                                        <form method="POST" action="{{ path('app_support_suppression', { id: ticket.id }) }}" onsubmit="return confirm('Voulez vous vraiment supprimer ce ticket ?');">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete-ticket-' ~ ticket.id) }}">
                                             <button>Supprimer le ticket</button>
                                         </form>

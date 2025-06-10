@@ -14,8 +14,8 @@
 
         <h2>Les artistes qui seront présents</h2>
 
-        <div class="artistes">
-            <div class="artiste">
+        <div class="width flex">
+            <div class="flex">
                 <div>
                     <img src="{{ asset('images/sanseverino.jpg') }}" alt="Sanseverino">
                 </div>
@@ -23,7 +23,7 @@
                 <h3>SANSEVERINO</h3>
             </div>
 
-            <div class="artiste gros">
+            <div class="flex">
                 <div>
                     <img src="{{ asset('images/la-yegros.jpg') }}" alt="La Yegros">
                 </div>
@@ -31,7 +31,7 @@
                 <h3>LA YEGROS</h3>
             </div>
 
-            <div class="artiste">
+            <div class="flex">
                 <div>
                     <img src="{{ asset('images/les-touffes-kretiennes.jpg') }}" alt="Les Touffes krétiennes">
                 </div>
@@ -54,7 +54,7 @@
         
         <h2>Qui sommes-nous ?</h2>
 
-        <div class="qui-sommes-nous">
+        <div class="width">
             <p>La BIC (Brigade d'Intervention Culturelle) est une équipe de bénévoles passionnés qui organise “La Grande Fête” chaque année au début du mois de Septembre à Ayguemorte Les Graves, un rassemblement festif, culturel et citoyen devenu un incontournable de la rentrée en Gironde.</p>
 
             <a href="{{ path('app_qui_sommes_nous') }}" class="bouton">En savoir plus</a>

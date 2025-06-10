@@ -3,19 +3,19 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_administrateur') }}" class="retour">Retour à l'accès administrateur</a>
+    <a href="{{ path('app_acces_administrateur') }}" class="gap retour width">Retour à l'accès administrateur</a>
 
-    <div class="accesadministrateur">
-        <div class="boutons">
-            <a href="{{ path('app_administrateur_article_ajout') }}" class="bouton espace">Ajouter un nouvel article</a>
-            <a href="{{ path('app_administrateur_articles_types') }}" class="bouton espace">Gérer les types d'article</a>
+    <div class="acces-administrateur">
+        <div class="gap">
+            <a href="{{ path('app_acces_administrateur_article_ajout') }}" class="bouton espace">Ajouter un nouvel article</a>
+            <a href="{{ path('app_acces_administrateur_articles_types') }}" class="bouton espace">Gérer les types d'article</a>
         </div>
 
         <div class="liste">
             <ul>
                 {% for article in articles %}
                     <li>
-                        <div class="flex">
+                        <div class="gap">
                             <div class="image">
                                 {% if article.image %}
                                     <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.nom }}">
@@ -32,10 +32,10 @@
                             </div>
                         </div>
 
-                        <div class="boutons">
-                            <a href="{{ path('app_administrateur_article_modification', { id: article.id }) }}" class="bouton">Modifier l'article</a>
+                        <div class="gap">
+                            <a href="{{ path('app_acces_administrateur_article_modification', { id: article.id }) }}" class="bouton">Modifier l'article</a>
 
-                            <form method="post" action="{{ path('app_administrateur_article_suppression', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                            <form method="POST" action="{{ path('app_acces_administrateur_article_suppression', { id: article.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('suppression-article' ~ article.id) }}">
                                 <button>Supprimer l'article</button>
                             </form>

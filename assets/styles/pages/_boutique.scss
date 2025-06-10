@@ -6,17 +6,7 @@
         padding: 25px;
     }
 
-    .contenu {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .conteneur {
-        width: 90%;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-
+    .width.flex {
         .filtres {
             height: fit-content;
             width: 20%;
@@ -27,7 +17,7 @@
                 margin: 50px auto;
 
                 p, a {
-                display: block;
+                    display: block;
                 }
 
                 p {
@@ -41,10 +31,8 @@
                         margin-bottom: 0;
                     }
 
-                    &.actif {
+                    &.gap {
                         display: flex;
-                        align-items: center;
-                        gap: 10px;
                         margin-left: -25px;
                         
                         &::before {
@@ -69,10 +57,8 @@
             gap: 25px;
             list-style: none;
 
-            .article {
-                display: flex;
+            .gap {
                 flex-direction: column;
-                gap: 10px;
                 color: black;
                 text-decoration: none;
 
@@ -83,10 +69,7 @@
         }
     }
 
-    &.ficheproduit {
-        width: 90%;
-        margin: auto;
-        display: flex;
+    .fiche-produit.gap {
         gap: 25px;
 
         h1::after {
@@ -98,8 +81,9 @@
             width: 50%;
         }
 
-        .contenu {
+        .flex {
             width: 50%;
+            align-items: start;
             flex-direction: column;
 
             h1 {

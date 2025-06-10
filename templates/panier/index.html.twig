@@ -3,15 +3,15 @@
 {% block title %}Panier | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="panier">
+    <div class="panier width">
         <h1>Panier</h1>
 
-        <div class="conteneur">
+        <div class="flex">
             {% if panier is not empty %}
-                <ul class="articles">
+                <ul class="gap">
                     {% for ligne in panier %}
                         <li>
-                            <div class="article">
+                            <div class="gap">
                                 <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="image">
                                     {% if ligne.article.image %}
                                         <img src="{{ asset('images/' ~ ligne.article.image) }}" alt="{{ ligne.article.nom }}">
@@ -20,7 +20,7 @@
                                     {% endif %}
                                 </a>
 
-                                <div class="contenu">
+                                <div class="flex">
                                     <p><strong>{{ ligne.article.nom }}</strong></p>
                                     <p>{{ ligne.article.description }}</p>
 

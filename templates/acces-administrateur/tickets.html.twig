@@ -3,7 +3,7 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_administrateur') }}" class="retour">Retour à l'accès administrateur</a>
+    <a href="{{ path('app_acces_administrateur') }}" class="gap retour width">Retour à l'accès administrateur</a>
 
     <div class="liste">
         <ul>
@@ -21,12 +21,12 @@
                         <p>{{ ticket.message }}</p>
                     </div>
 
-                    <div class="boutons">
+                    <div class="gap" style="justify-content: center;">
                         {% if ticket.statut is null %}
-                            <a href="{{ path('app_administrateur_ticket_modification', { id: ticket.id }) }}" class="bouton">Modifier le statut du ticket</a>
+                            <a href="{{ path('app_acces_administrateur_ticket_modification', { id: ticket.id }) }}" class="bouton">Modifier le statut du ticket</a>
                         {% endif %}
 
-                        <form action="{{ path('app_administrateur_ticket_suppression', { id: ticket.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce ticket ?');">
+                        <form action="{{ path('app_acces_administrateur_ticket_suppression', { id: ticket.id }) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce ticket ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('suppression-ticket' ~ ticket.id) }}">
                             <button>Supprimer le ticket</button>
                         </form>

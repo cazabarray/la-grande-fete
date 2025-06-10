@@ -1,10 +1,6 @@
 .partenaires {
     .slider {
-        width: 90%;
-        margin: 0 auto 100px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        margin-bottom: 100px;
 
         img {
             height: 250px;
@@ -12,13 +8,7 @@
         }
     }
 
-    .flex {
-        width: 90%;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
+    .conteneur {
         img {
             height: 500px;
             width: 45%;

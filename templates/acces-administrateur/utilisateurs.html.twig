@@ -3,7 +3,7 @@
 {% block title %}Accès administrateur | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_administrateur') }}" class="retour">Retour à l'accès administrateur</a>
+    <a href="{{ path('app_acces_administrateur') }}" class="gap retour width">Retour à l'accès administrateur</a>
 
     <div class="liste">
         <ul>
@@ -21,14 +21,14 @@
                             {% endif %}
                         </div>
 
-                        <div class="boutons">
+                        <div class="gap" style="justify-content: center;">
                             {% if 'ROLE_ADMIN' in user.roles %}
-                                <a href="{{ path('app_administrateur_utilisateur_retrogradation', { id: user.id }) }}" class="bouton">Rétrograder l'utilisateur</a>
+                                <a href="{{ path('app_acces_administrateur_utilisateur_retrogradation', { id: user.id }) }}" class="bouton">Rétrograder l'utilisateur</a>
                             {% else %}
-                                <a href="{{ path('app_administrateur_utilisateur_promotion', { id: user.id }) }}" class="bouton">Promouvoir l'utilisateur</a>
+                                <a href="{{ path('app_acces_administrateur_utilisateur_promotion', { id: user.id }) }}" class="bouton">Promouvoir l'utilisateur</a>
                             {% endif %}
 
-                            <form method="post" action="{{ path('app_administrateur_utilisateur_suppression', { id: user.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
+                            <form method="POST" action="{{ path('app_acces_administrateur_utilisateur_suppression', { id: user.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('delete-user-' ~ user.id) }}">
                                 <button>Supprimer l'utilisateur</button>
                             </form>

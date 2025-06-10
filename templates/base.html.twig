@@ -13,9 +13,9 @@
         {% endblock %}
     </head>
     <body>
-        <header>
+        <header class="width flex">
             <nav>
-                <ul>
+                <ul class="flex">
                     <li><a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête"></a></li>
                     <li><a href="{{ path('app_programme') }}">Programme</a></li>
                     <li><a href="{{ path('app_grand_repas') }}">Grand Repas</a></li>
@@ -27,9 +27,9 @@
             
             {% if app.user %}
                 <nav>
-                    <ul>
+                    <ul class="flex">
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
+                            <li><a href="{{ path('app_acces_administrateur') }}">Accès administrateur</a></li>
                         {% endif %}
 
                         <li><a href="{{ path('app_panier') }}">Panier</a></li>
@@ -38,7 +38,7 @@
                 </nav>
             {% else %}
                 <nav>
-                    <ul>
+                    <ul class="flex">
                         <li><a href="{{ path('app_login') }}">Connexion</a></li>
                         <li><a href="{{ path('app_register') }}">Inscription</a></li>
                     </ul>
@@ -50,7 +50,7 @@
             {% block body %}{% endblock %}
         </main>
 
-        <footer>
+        <footer class="flex">
             <a href="{{ path('app_accueil') }}" class="logotype"><img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête"></a>
 
             <nav>
@@ -60,18 +60,6 @@
                     <li><a href="{{ path('app_informations_pratiques') }}">Informations pratiques</a></li>
                     <li><a href="{{ path('app_boutique') }}">Boutique</a></li>
                     <li><a href="{{ path('app_support') }}">Support</a></li>
-
-                    {% if app.user %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('app_administrateur') }}">Accès administrateur</a></li>
-                        {% endif %}
-
-                        <li><a href="{{ path('app_panier') }}">Panier</a></li>
-                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
-                        <li><a href="{{ path('app_register') }}">Inscription</a></li>
-                    {% endif %}
                 </ul>
             </nav>
 

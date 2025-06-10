@@ -3,13 +3,9 @@
         width: fit-content;
         margin: 0 auto 25px;
     }
-    
-    .flex {
+
+    .width.flex {
         width: 75%;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
 
         img {
             width: 40%;

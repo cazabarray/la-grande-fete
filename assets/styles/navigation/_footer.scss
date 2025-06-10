@@ -4,8 +4,7 @@ footer {
     margin-top: 100px;
     background-color: variables.$rouge;
     padding: 75px 50px;
-    display: flex;
-    align-items: center;
+    justify-content: start !important;
     gap: 225px;
 
     .logotype {
@@ -19,8 +18,8 @@ footer {
             font-family: variables.$font-titre;
             font-size: 30px;
             color: white;
-            text-align: center;
             text-decoration: none;
+            text-align: center;
         }
     }
 }

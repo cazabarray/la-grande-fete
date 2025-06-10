@@ -1,10 +1,6 @@
 .qui-sommes-nous {
-    .conteneur {
-        width: 90%;
-        margin: 0 auto 100px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .width.flex {
+        margin-bottom: 100px;
 
         div, img {
             width: 50%;

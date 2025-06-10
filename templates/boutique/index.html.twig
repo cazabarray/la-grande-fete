@@ -3,23 +3,23 @@
 {% block title %}Boutique | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="boutique index">
+    <div class="boutique">
         <div class="banniere">
             <h1>BOUTIQUE</h1>
         </div>
 
         <h2>Nos articles</h2>
 
-        <div class="conteneur">
+        <div class="width flex">
             <div class="filtres">
                 <div class="sous-conteneur">
                     <p><strong>Filtrer par type</strong></p>
                     
                     {% set typeActif = app.request.query.get('type') %}
-                    <a href="{{ path('app_boutique') }}" class="{{ typeActif is empty ? 'actif' : '' }}">Tous les articles</a>
+                    <a href="{{ path('app_boutique') }}" class="{{ typeActif is empty ? 'gap' : '' }}">Tous les articles</a>
 
                     {% for type in types %}
-                        <a href="{{ path('app_boutique', { type: type.id }) }}" class="{{ typeActif == type.id ? 'actif' : '' }}">
+                        <a href="{{ path('app_boutique', { type: type.id }) }}" class="{{ typeActif == type.id ? 'gap' : '' }}">
                             {{ type.nom }}
                         </a>
                     {% endfor %}
@@ -29,7 +29,7 @@
             <ul class="articles">
                 {% for article in articles %}
                     <li>
-                        <a href="{{ path('app_boutique_article', { id: article.id }) }}" class="article">
+                        <a href="{{ path('app_boutique_article', { id: article.id }) }}" class="gap">
                             <div class="image">
                                 {% if article.image %}
                                     <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.nom }}">
@@ -38,7 +38,7 @@
                                 {% endif %}
                             </div>
                             
-                            <div class="contenu">
+                            <div class="flex">
                                 <p><strong>{{ article.nom }}</strong></p>
                                 <p><strong>{{ article.prix }} €</strong></p>
                             </div>

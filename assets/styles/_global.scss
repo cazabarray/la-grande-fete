@@ -49,7 +49,7 @@ a {
     color: variables.$rouge;
 }
 
-img {
+img, video {
     height: 100%;
     width: 100%;
     object-fit: contain;
@@ -59,7 +59,7 @@ ul {
     list-style: inside;
 }
 
-.bouton, button {
+button, .bouton {
     width: fit-content;
     border: solid 2px variables.$rouge;
     background-color: white;
@@ -81,22 +81,29 @@ ul {
     }
 }
 
-.retour {
+.width {
+    width: 90%;
+    margin: auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gap {
     display: flex;
     gap: 10px;
-    width: 90%;
-    margin: 0 auto 25px;
+}
+
+.retour {
     text-decoration: none;
+    margin-bottom: 25px;
 
     &::before {
         content: "<<";
     }
-}
-
-.boutons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
 }
 
 .banniere {

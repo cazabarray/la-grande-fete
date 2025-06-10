@@ -3,36 +3,38 @@
 {% block title %}Boutique | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_boutique') }}" class="retour">Retour à la boutique</a>
+    <div class="boutique width">
+        <a href="{{ path('app_boutique') }}" class="gap retour">Retour à la boutique</a>
 
-    <div class="boutique ficheproduit">
-        <div class="image">
-            {% if article.image %}
-                <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.nom }}">
-            {% else %}
-                <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
-            {% endif %}
-        </div>
-
-        <div class="contenu">
-            <h1>{{ article.nom }}</h1>
-            <p>{{ article.description }}</p>
-            <p><strong>{{ article.prix }} €</strong></p>
-
-            <form action="{{ path('app_panier_ajout', { id: article.id }) }}" method="POST">
-                {% if article.type.nom == 'Vêtement' %}
-                    <label for="taille">Taille :</label>
-                    <select name="taille" id="taille" required>
-                        <option value="">Choisir une taille</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                    </select>
+        <div class="fiche-produit gap">
+            <div class="image">
+                {% if article.image %}
+                    <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.nom }}">
+                {% else %}
+                    <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
                 {% endif %}
-                
-                <button type="submit">Ajouter au panier</button>
-            </form>
+            </div>
+
+            <div class="flex">
+                <h1>{{ article.nom }}</h1>
+                <p>{{ article.description }}</p>
+                <p><strong>{{ article.prix }} €</strong></p>
+
+                <form action="{{ path('app_panier_ajout', { id: article.id }) }}" method="POST">
+                    {% if article.type.nom == 'Vêtement' %}
+                        <label for="taille">Taille :</label>
+                        <select name="taille" id="taille" required>
+                            <option value="">Choisir une taille</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    {% endif %}
+                    
+                    <button type="submit">Ajouter au panier</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

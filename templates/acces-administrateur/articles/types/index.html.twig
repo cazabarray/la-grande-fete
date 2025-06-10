@@ -3,10 +3,10 @@
 {% block title %}Gestion des types | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_administrateur_articles') }}" class="retour">Retour aux articles</a>
+    <a href="{{ path('app_acces_administrateur_articles') }}" class="gap retour width">Retour aux articles</a>
 
-    <div class="accesadministrateur">
-        <a href="{{ path('app_administrateur_articles_type_ajout') }}" class="bouton ajout">Ajouter un nouveau type d'article</a>
+    <div class="acces-administrateur">
+        <a href="{{ path('app_acces_administrateur_articles_type_ajout') }}" class="bouton ajout">Ajouter un nouveau type d'article</a>
 
         <div class="liste">
             <ul>
@@ -16,10 +16,10 @@
                             <p>{{ type.nom }}</p>
                         </div>
 
-                        <div class="boutons">
-                            <a href="{{ path('app_administrateur_articles_type_modification', { id: type.id }) }}" class="bouton">Modifier le nom du type d'article</a>
+                        <div class="gap">
+                            <a href="{{ path('app_acces_administrateur_articles_type_modification', { id: type.id }) }}" class="bouton">Modifier le nom du type d'article</a>
 
-                            <form method="post" action="{{ path('app_administrateur_articles_type_suppression', { id: type.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type ?');">
+                            <form method="POST" action="{{ path('app_acces_administrateur_articles_type_suppression', { id: type.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type ?');">
                                 <input type="hidden" name="_token" value="{{ csrf_token('suppression-type' ~ type.id) }}">
                                 <button>Supprimer le type d'article</button>
                             </form>

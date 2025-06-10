@@ -46,7 +46,7 @@ a {
   color: #dc353d;
 }
 
-img {
+img, video {
   height: 100%;
   width: 100%;
   object-fit: contain;
@@ -56,7 +56,7 @@ ul {
   list-style: inside;
 }
 
-.bouton, button {
+button, .bouton {
   width: fit-content;
   border: solid 2px #dc353d;
   background-color: white;
@@ -67,30 +67,37 @@ ul {
   display: flex;
   gap: 10px;
 }
-.bouton:hover, button:hover {
+button:hover, .bouton:hover {
   cursor: pointer;
   background-color: #dc353d;
   color: white;
 }
-.bouton::after, button::after {
+button::after, .bouton::after {
   content: ">>";
 }
 
-.retour {
+.width {
+  width: 90%;
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gap {
   display: flex;
   gap: 10px;
-  width: 90%;
-  margin: 0 auto 25px;
+}
+
+.retour {
   text-decoration: none;
+  margin-bottom: 25px;
 }
 .retour::before {
   content: "<<";
-}
-
-.boutons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
 }
 
 .banniere {
@@ -178,17 +185,8 @@ ul {
   margin: auto;
 }
 
-header {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 header ul {
   list-style: none;
-  display: flex;
-  align-items: center;
   gap: 50px;
 }
 header ul .logotype {
@@ -209,8 +207,7 @@ footer {
   margin-top: 100px;
   background-color: #dc353d;
   padding: 75px 50px;
-  display: flex;
-  align-items: center;
+  justify-content: start !important;
   gap: 225px;
 }
 footer .logotype {
@@ -223,8 +220,8 @@ footer .conteneur a {
   font-family: "niagara", serif;
   font-size: 30px;
   color: white;
-  text-align: center;
   text-decoration: none;
+  text-align: center;
 }
 
 .accueil {
@@ -243,39 +240,32 @@ footer .conteneur a {
 }
 .accueil .banniere video {
   position: absolute;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 .accueil .banniere h1 {
   position: relative;
   z-index: 1;
 }
-.accueil .artistes {
-  width: 90%;
-  margin: 0 auto 100px;
-  display: flex;
-  justify-content: space-between;
+.accueil .width.flex {
   align-items: end;
+  margin-bottom: 100px;
 }
-.accueil .artistes .artiste {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
+.accueil .width.flex .flex {
   width: 27.5%;
+  flex-direction: column;
+  gap: 25px;
 }
-.accueil .artistes .artiste.gros {
+.accueil .width.flex .flex:nth-child(2) {
   width: 30%;
 }
-.accueil .artistes .artiste.gros div {
+.accueil .width.flex .flex:nth-child(2) div {
   height: 450px;
 }
-.accueil .artistes .artiste div {
+.accueil .width.flex .flex div {
   height: 350px;
   width: 100%;
 }
-.accueil .artistes .artiste div img {
+.accueil .width.flex .flex div img {
   object-fit: cover;
 }
 .accueil .rouge {
@@ -308,14 +298,13 @@ footer .conteneur a {
 .accueil .rouge a h2::after {
   border-color: white;
 }
-.accueil .qui-sommes-nous {
+.accueil .width:last-of-type {
   width: 50%;
-  margin: auto;
 }
-.accueil .qui-sommes-nous p {
+.accueil .width:last-of-type p {
   text-align: center;
 }
-.accueil .qui-sommes-nous .bouton {
+.accueil .width:last-of-type .bouton {
   margin: 25px auto 0;
 }
 
@@ -323,20 +312,16 @@ footer .conteneur a {
   width: fit-content;
   margin: 0 auto 25px;
 }
-.grand-repas .flex {
+.grand-repas .width.flex {
   width: 75%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
-.grand-repas .flex img {
+.grand-repas .width.flex img {
   width: 40%;
 }
-.grand-repas .flex .contenu {
+.grand-repas .width.flex .contenu {
   width: 60%;
 }
-.grand-repas .flex .contenu div {
+.grand-repas .width.flex .contenu div {
   width: fit-content;
   margin: auto;
 }
@@ -344,73 +329,54 @@ footer .conteneur a {
   margin: 25px auto 0;
 }
 
-.informations-pratiques .conteneur {
-  width: 90%;
-  margin: auto;
-}
-.informations-pratiques .conteneur .flex {
-  display: flex;
-  align-items: center;
+.informations-pratiques .flex {
   margin-bottom: 100px;
 }
-.informations-pratiques .conteneur .flex iframe {
+.informations-pratiques .flex iframe {
   width: 75%;
   height: 500px;
   border: none;
 }
-.informations-pratiques .conteneur .flex .contenu {
+.informations-pratiques .flex .contenu {
   width: 25%;
 }
-.informations-pratiques .conteneur .flex .contenu p {
+.informations-pratiques .flex .contenu p {
   text-align: center;
 }
-.informations-pratiques .conteneur ul {
+.informations-pratiques ul {
   width: fit-content;
-  margin: auto;
 }
 
 .boutique .image {
   background-color: #f0f0f0;
   padding: 25px;
 }
-.boutique .contenu {
-  display: flex;
-  justify-content: space-between;
-}
-.boutique .conteneur {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-}
-.boutique .conteneur .filtres {
+.boutique .width.flex .filtres {
   height: fit-content;
   width: 20%;
   background-color: #f0f0f0;
 }
-.boutique .conteneur .filtres .sous-conteneur {
+.boutique .width.flex .filtres .sous-conteneur {
   width: fit-content;
   margin: 50px auto;
 }
-.boutique .conteneur .filtres .sous-conteneur p, .boutique .conteneur .filtres .sous-conteneur a {
+.boutique .width.flex .filtres .sous-conteneur p, .boutique .width.flex .filtres .sous-conteneur a {
   display: block;
 }
-.boutique .conteneur .filtres .sous-conteneur p {
+.boutique .width.flex .filtres .sous-conteneur p {
   margin-bottom: 25px;
 }
-.boutique .conteneur .filtres .sous-conteneur a {
+.boutique .width.flex .filtres .sous-conteneur a {
   margin-bottom: 10px;
 }
-.boutique .conteneur .filtres .sous-conteneur a:last-of-type {
+.boutique .width.flex .filtres .sous-conteneur a:last-of-type {
   margin-bottom: 0;
 }
-.boutique .conteneur .filtres .sous-conteneur a.actif {
+.boutique .width.flex .filtres .sous-conteneur a.gap {
   display: flex;
-  align-items: center;
-  gap: 10px;
   margin-left: -25px;
 }
-.boutique .conteneur .filtres .sous-conteneur a.actif::before {
+.boutique .width.flex .filtres .sous-conteneur a.gap::before {
   content: "";
   width: 15px;
   height: 15px;
@@ -419,41 +385,37 @@ footer .conteneur a {
   background-position: center;
   background-repeat: no-repeat;
 }
-.boutique .conteneur .articles {
+.boutique .width.flex .articles {
   width: 75%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
   list-style: none;
 }
-.boutique .conteneur .articles .article {
-  display: flex;
+.boutique .width.flex .articles .gap {
   flex-direction: column;
-  gap: 10px;
   color: black;
   text-decoration: none;
 }
-.boutique .conteneur .articles .article .image {
+.boutique .width.flex .articles .gap .image {
   height: 200px;
 }
-.boutique.ficheproduit {
-  width: 90%;
-  margin: auto;
-  display: flex;
+.boutique .fiche-produit.gap {
   gap: 25px;
 }
-.boutique.ficheproduit h1::after {
+.boutique .fiche-produit.gap h1::after {
   border-color: #dc353d;
 }
-.boutique.ficheproduit .image {
+.boutique .fiche-produit.gap .image {
   height: 250px;
   width: 50%;
 }
-.boutique.ficheproduit .contenu {
+.boutique .fiche-produit.gap .flex {
   width: 50%;
+  align-items: start;
   flex-direction: column;
 }
-.boutique.ficheproduit .contenu h1 {
+.boutique .fiche-produit.gap .flex h1 {
   margin: 0;
 }
 
@@ -467,170 +429,146 @@ footer .conteneur a {
   margin-top: 25px;
 }
 
-.qui-sommes-nous .conteneur {
-  width: 90%;
-  margin: 0 auto 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.qui-sommes-nous .width.flex {
+  margin-bottom: 100px;
 }
-.qui-sommes-nous .conteneur div, .qui-sommes-nous .conteneur img {
+.qui-sommes-nous .width.flex div, .qui-sommes-nous .width.flex img {
   width: 50%;
 }
-.qui-sommes-nous .conteneur:last-of-type img {
+.qui-sommes-nous .width.flex:last-of-type img {
   height: 500px;
   width: 40%;
   object-fit: cover;
 }
-.qui-sommes-nous .conteneur:last-of-type div {
+.qui-sommes-nous .width.flex:last-of-type div {
   width: 60%;
 }
-.qui-sommes-nous .conteneur:last-of-type div p {
+.qui-sommes-nous .width.flex:last-of-type div p {
   text-align: center;
 }
-.qui-sommes-nous .conteneur:last-of-type div a {
+.qui-sommes-nous .width.flex:last-of-type div a {
   margin: 25px auto 0;
 }
-.qui-sommes-nous .conteneur p {
+.qui-sommes-nous .width.flex p {
   width: 90%;
   margin: 0 auto 25px;
 }
-.qui-sommes-nous .conteneur p:last-of-type {
+.qui-sommes-nous .width.flex p:last-of-type {
   margin-bottom: 0;
 }
 
 .partenaires .slider {
-  width: 90%;
-  margin: 0 auto 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 100px;
 }
 .partenaires .slider img {
   height: 250px;
   width: 20%;
 }
-.partenaires .flex {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.partenaires .flex img {
+.partenaires .conteneur img {
   height: 500px;
   width: 45%;
   object-fit: cover;
 }
-.partenaires .flex div {
+.partenaires .conteneur div {
   width: 55%;
 }
-.partenaires .flex div p {
+.partenaires .conteneur div p {
   text-align: center;
 }
-.partenaires .flex div p:first-of-type {
+.partenaires .conteneur div p:first-of-type {
   margin-bottom: 25px;
 }
-.partenaires .flex div .bouton {
+.partenaires .conteneur div .bouton {
   margin: 25px auto 0;
 }
 
-.pages-legales .conteneur {
+.pages-legales .width {
   width: 75%;
-  margin: auto;
 }
-.pages-legales .conteneur h2 {
+.pages-legales .width h2 {
   margin-top: 100px;
 }
-.pages-legales .conteneur h2:first-of-type {
+.pages-legales .width h2:first-of-type {
   margin-top: 0;
 }
-.pages-legales .conteneur h2.espace {
+.pages-legales .width h2.espace {
   margin-top: 100px;
 }
-.pages-legales .conteneur h3 {
+.pages-legales .width h3 {
   margin-top: 25px;
   margin-bottom: 10px;
   margin-left: 0;
 }
-.pages-legales .conteneur .espace {
+.pages-legales .width .espace {
   margin-top: 10px;
 }
 
 .compte p {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .panier {
   width: 75%;
-  margin: auto;
 }
 .panier h1::after {
   border-color: #dc353d;
 }
-.panier .conteneur {
-  display: flex;
-  justify-content: space-between;
-}
-.panier .conteneur .articles {
+.panier ul.gap {
   width: 70%;
-  display: flex;
   flex-direction: column;
   gap: 50px;
   list-style: none;
 }
-.panier .conteneur .articles .article {
-  display: flex;
+.panier ul.gap .gap {
   gap: 25px;
 }
-.panier .conteneur .articles .article .image {
+.panier ul.gap .gap .image {
   height: 200px;
   width: 25%;
   background-color: #f0f0f0;
   padding: 25px;
 }
-.panier .conteneur .articles .article .contenu {
+.panier ul.gap .gap .flex {
   width: 75%;
-  display: flex;
+  align-items: start;
   flex-direction: column;
-  justify-content: space-between;
 }
-.panier .conteneur .total {
+.panier .total {
   height: fit-content;
   width: 25%;
   background-color: #f0f0f0;
 }
-.panier .conteneur .total p {
+.panier .total p {
   text-align: center;
   margin: 25px 0;
 }
-.panier .conteneur .centre {
+.panier .centre {
   width: 100%;
   text-align: center;
   padding: 25vh 0;
 }
 
-.accesadministrateur .liste {
+.acces-administrateur .gap {
+  justify-content: center;
+}
+.acces-administrateur .liste {
   width: 50%;
 }
-.accesadministrateur .liste .flex {
-  display: flex;
-  gap: 10px;
-}
-.accesadministrateur .liste .flex .image {
+.acces-administrateur .liste .image {
   width: 20%;
   background-color: #f0f0f0;
   padding: 25px;
   border-radius: 10px;
 }
-.accesadministrateur .liste .flex .conteneur {
+.acces-administrateur .liste .conteneur {
   width: 75%;
+  margin: auto;
 }
-.accesadministrateur .espace {
+.acces-administrateur .espace {
   margin-bottom: 25px;
 }
-.accesadministrateur .ajout {
+.acces-administrateur .ajout {
   margin: 0 auto 25px;
 }
 

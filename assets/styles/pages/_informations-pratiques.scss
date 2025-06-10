@@ -1,31 +1,23 @@
 .informations-pratiques {
-    .conteneur {
-        width: 90%;
-        margin: auto;
+    .flex {
+        margin-bottom: 100px;
 
-        .flex {
-            display: flex;
-            align-items: center;
-            margin-bottom: 100px;
-
-            iframe {
-                width: 75%;
-                height: 500px;
-                border: none;
-            }
-
-            .contenu {
-                width: 25%;
-
-                p {
-                    text-align: center;
-                }
-            }
+        iframe {
+            width: 75%;
+            height: 500px;
+            border: none;
         }
 
-        ul {
-            width: fit-content;
-            margin: auto;
+        .contenu {
+            width: 25%;
+
+            p {
+                text-align: center;
+            }
         }
+    }
+
+    ul {
+        width: fit-content;
     }
 }

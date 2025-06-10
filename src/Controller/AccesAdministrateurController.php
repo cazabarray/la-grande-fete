@@ -16,28 +16,28 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Repository\TicketRepository;
 use App\Entity\Ticket;
 
-#[Route('/administrateur')]
-final class AdministrateurController extends AbstractController
+#[Route('/acces-administrateur')]
+final class AccesAdministrateurController extends AbstractController
 {
-    #[Route(name: 'app_administrateur')]
+    #[Route(name: 'app_acces_administrateur')]
     public function index(): Response
     {
-        return $this->render('administrateur/index.html.twig', [
-            'controller_name' => 'AdministrateurController',
+        return $this->render('acces-administrateur/index.html.twig', [
+            'controller_name' => 'AccesAdministrateurController',
         ]);
     }
 
-    #[Route('/utilisateurs', name: 'app_administrateur_utilisateurs')]
+    #[Route('/utilisateurs', name: 'app_acces_administrateur_utilisateurs')]
     public function utilisateurs(UserRepository $userRepo): Response
     {
         $users = $userRepo->findAll();
 
-        return $this->render('administrateur/utilisateurs.html.twig', [
+        return $this->render('acces-administrateur/utilisateurs.html.twig', [
             'users' => $users,
         ]);
     }
 
-    #[Route('/utilisateur/{id}/promotion', name: 'app_administrateur_utilisateur_promotion')]
+    #[Route('/utilisateur/{id}/promotion', name: 'app_acces_administrateur_utilisateur_promotion')]
     public function promotionUtilisateur(User $user, EntityManagerInterface $em): Response
     {
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
@@ -47,10 +47,10 @@ final class AdministrateurController extends AbstractController
             $this->addFlash('success', 'Utilisateur promu en administrateur avec succès.');
         }
 
-        return $this->redirectToRoute('app_administrateur_utilisateurs');
+        return $this->redirectToRoute('app_acces_administrateur_utilisateurs');
     }
 
-    #[Route('/utilisateur/{id}/retrogradation', name: 'app_administrateur_utilisateur_retrogradation')]
+    #[Route('/utilisateur/{id}/retrogradation', name: 'app_acces_administrateur_utilisateur_retrogradation')]
     public function retrogradationUtilisateur(User $user, EntityManagerInterface $em): Response
     {
         $newRoles = array_filter($user->getRoles(), fn($r) => $r !== 'ROLE_ADMIN');
@@ -59,10 +59,10 @@ final class AdministrateurController extends AbstractController
 
         $this->addFlash('success', 'Administrateur rétrogradé en utilisateur avec succès.');
 
-        return $this->redirectToRoute('app_administrateur_utilisateurs');
+        return $this->redirectToRoute('app_acces_administrateur_utilisateurs');
     }
 
-    #[Route('/utilisateur/{id}/suppression', name: 'app_administrateur_utilisateur_suppression', methods: ['POST'])]
+    #[Route('/utilisateur/{id}/suppression', name: 'app_acces_administrateur_utilisateur_suppression', methods: ['POST'])]
     public function suppressionUtilisateur(User $user, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete-user-' . $user->getId(), $request->request->get('_token'))) {
@@ -72,20 +72,20 @@ final class AdministrateurController extends AbstractController
             $this->addFlash('success', 'Utilisateur supprimé avec succès.');
         }
 
-        return $this->redirectToRoute('app_administrateur_utilisateurs');
+        return $this->redirectToRoute('app_acces_administrateur_utilisateurs');
     }
 
-    #[Route('/articles', name: 'app_administrateur_articles')]
+    #[Route('/articles', name: 'app_acces_administrateur_articles')]
     public function articles(ArticleRepository $repo): Response
     {
         $articles = $repo->findAll();
 
-        return $this->render('administrateur/articles/index.html.twig', [
+        return $this->render('acces-administrateur/articles/index.html.twig', [
             'articles' => $articles,
         ]);
     }
 
-    #[Route('/article/ajout', name: 'app_administrateur_article_ajout')]
+    #[Route('/article/ajout', name: 'app_acces_administrateur_article_ajout')]
     public function ajoutArticle(Request $request, EntityManagerInterface $em): Response
     {
         $article = new Article();
@@ -109,13 +109,13 @@ final class AdministrateurController extends AbstractController
             return $this->redirectToRoute('app_administrateur_articles');
         }
 
-        return $this->render('administrateur/articles/form.html.twig', [
+        return $this->render('acces-administrateur/articles/form.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
         ]);
     }
 
-    #[Route('/article/{id}', name: 'app_administrateur_article_modification')]
+    #[Route('/article/{id}', name: 'app_acces_administrateur_article_modification')]
     public function modificationArticle(Article $article, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(ArticleForm::class, $article);
@@ -146,13 +146,13 @@ final class AdministrateurController extends AbstractController
             return $this->redirectToRoute('app_administrateur_articles');
         }
 
-        return $this->render('administrateur/articles/form.html.twig', [
+        return $this->render('acces-administrateur/articles/form.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
         ]);
     }
 
-    #[Route('/article/{id}/suppression', name: 'app_administrateur_article_suppression', methods: ['POST'])]
+    #[Route('/article/{id}/suppression', name: 'app_acces_administrateur_article_suppression', methods: ['POST'])]
     public function suppressionArticle(Article $article, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('suppression-article' . $article->getId(), $request->request->get('_token'))) {
@@ -172,20 +172,20 @@ final class AdministrateurController extends AbstractController
             $this->addFlash('success', 'Article supprimé avec succès.');
         }
 
-        return $this->redirectToRoute('app_administrateur_articles');
+        return $this->redirectToRoute('app_acces_administrateur_articles');
     }
 
-    #[Route('articles/types', name: 'app_administrateur_articles_types')]
+    #[Route('articles/types', name: 'app_acces_administrateur_articles_types')]
     public function typesArticles(\App\Repository\TypeRepository $typeRepo): Response
     {
         $types = $typeRepo->findAll();
 
-        return $this->render('administrateur/articles/types/index.html.twig', [
+        return $this->render('acces-administrateur/articles/types/index.html.twig', [
             'types' => $types,
         ]);
     }
 
-    #[Route('articles/type/ajout', name: 'app_administrateur_articles_type_ajout')]
+    #[Route('articles/type/ajout', name: 'app_acces_administrateur_articles_type_ajout')]
     public function ajoutTypeArticles(Request $request, EntityManagerInterface $em): Response
     {
         $type = new \App\Entity\Type();
@@ -198,16 +198,16 @@ final class AdministrateurController extends AbstractController
 
             $this->addFlash('success', 'Type ajouté avec succès.');
 
-            return $this->redirectToRoute('app_administrateur_articles_types');
+            return $this->redirectToRoute('app_acces_administrateur_articles_types');
         }
 
-        return $this->render('administrateur/articles/types/form.html.twig', [
+        return $this->render('acces-administrateur/articles/types/form.html.twig', [
             'form' => $form->createView(),
             'type' => $type,
         ]);
     }
 
-    #[Route('articles/type/{id}', name: 'app_administrateur_articles_type_modification')]
+    #[Route('articles/type/{id}', name: 'app_acces_administrateur_articles_type_modification')]
     public function modificationTypeArticles(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(\App\Form\TypeForm::class, $type);
@@ -221,13 +221,13 @@ final class AdministrateurController extends AbstractController
             return $this->redirectToRoute('app_administrateur_articles_types');
         }
 
-        return $this->render('administrateur/articles/types/form.html.twig', [
+        return $this->render('acces-administrateur/articles/types/form.html.twig', [
             'form' => $form->createView(),
             'type' => $type,
         ]);
     }
 
-    #[Route('articles/type/{id}/suppression', name: 'app_administrateur_articles_type_suppression', methods: ['POST'])]
+    #[Route('articles/type/{id}/suppression', name: 'app_acces_administrateur_articles_type_suppression', methods: ['POST'])]
     public function suppressionTypeArticles(\App\Entity\Type $type, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('suppression-type' . $type->getId(), $request->request->get('_token'))) {
@@ -236,20 +236,20 @@ final class AdministrateurController extends AbstractController
 
             $this->addFlash('success', 'Type supprimé avec succès.');
         }
-        return $this->redirectToRoute('app_administrateur_articles_types');
+        return $this->redirectToRoute('app_acces_administrateur_articles_types');
     }
 
-    #[Route('/tickets', name: 'app_administrateur_tickets')]
+    #[Route('/tickets', name: 'app_acces_administrateur_tickets')]
     public function tickets(TicketRepository $ticketRepo): Response
     {
         $tickets = $ticketRepo->findBy([], ['id' => 'DESC']);
 
-        return $this->render('administrateur/tickets.html.twig', [
+        return $this->render('acces-administrateur/tickets.html.twig', [
             'tickets' => $tickets,
         ]);
     }
 
-    #[Route('/ticket/{id}', name: 'app_administrateur_ticket_modification')]
+    #[Route('/ticket/{id}', name: 'app_acces_administrateur_ticket_modification')]
     public function modificationTicket(Ticket $ticket, EntityManagerInterface $em): Response
     {
         $ticket->setStatut(new \DateTime());
@@ -257,10 +257,10 @@ final class AdministrateurController extends AbstractController
 
         $this->addFlash('success', 'Statut du ticket modifié avec succès.');
 
-        return $this->redirectToRoute('app_administrateur_tickets');
+        return $this->redirectToRoute('app_acces_administrateur_tickets');
     }
 
-    #[Route('/ticket/{id}/suppression', name: 'app_administrateur_ticket_suppression', methods: ['POST'])]
+    #[Route('/ticket/{id}/suppression', name: 'app_acces_administrateur_ticket_suppression', methods: ['POST'])]
     public function suppressionTicket(Ticket $ticket, Request $request, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('suppression-ticket' . $ticket->getId(), $request->request->get('_token'))) {
@@ -270,6 +270,6 @@ final class AdministrateurController extends AbstractController
             $this->addFlash('success', 'Ticket supprimé avec succès.');
         }
 
-        return $this->redirectToRoute('app_administrateur_tickets');
+        return $this->redirectToRoute('app_acces_administrateur_tickets');
     }
 }

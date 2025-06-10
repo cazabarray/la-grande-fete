@@ -1,0 +1,29 @@
+.pages-legales {
+    .conteneur {
+        width: 75%;
+        margin: auto;
+
+        h2 {
+            margin-top: 100px;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            &.espace {
+                margin-top: 100px;
+            }
+        }
+
+        h3 {
+            margin-top: 25px;
+            margin-bottom: 10px;
+            margin-left: 0;
+        }
+
+        .espace {
+            margin-top: 10px;
+
+        }
+    }
+}

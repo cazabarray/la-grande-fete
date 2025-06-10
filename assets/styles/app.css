@@ -189,10 +189,7 @@ header ul {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 25px;
-}
-header ul.pages {
-  gap: 100px;
+  gap: 50px;
 }
 header ul .logotype {
   width: fit-content;
@@ -345,6 +342,31 @@ footer .conteneur a {
 }
 .grand-repas a {
   margin: 25px auto 0;
+}
+
+.informations-pratiques .conteneur {
+  width: 90%;
+  margin: auto;
+}
+.informations-pratiques .conteneur .flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.informations-pratiques .conteneur .flex iframe {
+  width: 75%;
+  height: 500px;
+  border: none;
+}
+.informations-pratiques .conteneur .flex .contenu {
+  width: 25%;
+}
+.informations-pratiques .conteneur .flex .contenu p {
+  text-align: center;
+}
+.informations-pratiques .conteneur ul {
+  width: fit-content;
+  margin: auto;
 }
 
 .boutique .image {
@@ -511,6 +533,28 @@ footer .conteneur a {
 }
 .partenaires .flex div .bouton {
   margin: 25px auto 0;
+}
+
+.pages-legales .conteneur {
+  width: 75%;
+  margin: auto;
+}
+.pages-legales .conteneur h2 {
+  margin-top: 100px;
+}
+.pages-legales .conteneur h2:first-of-type {
+  margin-top: 0;
+}
+.pages-legales .conteneur h2.espace {
+  margin-top: 100px;
+}
+.pages-legales .conteneur h3 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  margin-left: 0;
+}
+.pages-legales .conteneur .espace {
+  margin-top: 10px;
 }
 
 .compte p {

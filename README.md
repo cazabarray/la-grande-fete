@@ -1,6 +1,5 @@
 À faire
 • Coder les sliders | Accueil + Partenaires
-• Créer les pages statiques et les styliser
 • Adapter le style du formulaire des fiches produit | Boutique
 • Modifier le style du champ pour les types | Accès administrateur (articles)
 • Coder le tunnel d'achat

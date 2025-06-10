@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations pratiques | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="informations-pratiques">
+        <div class="banniere">
+            <h1>INFORMATIONS PRATIQUES</h1>
+        </div>
+
+        <h2>Localisation</h2>
+
+        <div class="conteneur">
+            <div class="flex">
+                <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Plaine+des+sports,+Avenue+du+Général+de+Gaulle,+33640+Ayguemorte+les+Graves&output=embed"></iframe>
+
+                <div class="contenu">
+                    <p>Adresse :</p>
+                    <p>Plaine des sports<br>Avenue du Général de Gaulle<br>33640 Ayguemorte les Graves</p>
+                </div>
+            </div>
+
+            <h2>Informations à savoir</h2>
+
+            <ul>
+                <li>CB acceptée (attention pas de distributeur à Ayguemorte)</li>
+                <li>Animaux non autorisés sur le site</li>
+                <li>Pensez à utiliser les bornes de recyclages présentes sur le site pour vos déchets !</li>
+                <li>Pensez aussi à porter vos propres écocup (verres en vente sur place également)</li>
+                <li>Bouteilles en verre et alcool non autorisés sur site</li>
+                <li>Grands jeux en bois surdimensionnés pendant toute la fête en libre service avec l'association AJC</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

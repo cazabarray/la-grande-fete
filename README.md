@@ -1,8 +1,9 @@
 À faire
-• Coder les sliders | Accueil + Partenaires
 • Intégrer les pictogrammes | Header
 • Adapter le style du formulaire des fiches produit | Boutique
 • Modifier le style du champ pour les types | Accès administrateur (articles)
+• Harmoniser tout le style du site | Global
+• Optimiser tout le style du site | Global
 • Coder le tunnel d'achat
 
 Une fois le site terminé

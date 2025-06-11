@@ -27,28 +27,27 @@
     }
 
     .width.flex {
-        align-items: end;
+        gap: 25px;
         margin-bottom: 100px;
 
-        .flex {
-            width: 27.5%;
-            flex-direction: column;
-            gap: 25px;
-
-            &:nth-child(2) {
+        .gap {
+            align-items: end;
+        
+            div {
                 width: 30%;
 
-                div {
-                    height: 450px;
-                }
-            }
-
-            div {
-                height: 350px;
-                width: 100%;
-
                 img {
+                    height: 350px;
                     object-fit: cover;
+                    margin-bottom: 25px;
+                }
+
+                &.gros {
+                    width: 40%;
+
+                    img {
+                        height: 450px;
+                    }
                 }
             }
         }

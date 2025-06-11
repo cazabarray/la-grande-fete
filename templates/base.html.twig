@@ -72,5 +72,44 @@
                 </ul>
             </nav>
         </footer>
+
+        {% block extra_js %}
+        <script>
+            (function() {
+                const conteneur = document.querySelector('.gauche')?.closest('.accueil .width.flex');
+                
+                if (!conteneur) return;
+                
+                const slider = conteneur.querySelector('.accueil .gap');
+                const slides = slider.children;
+                const gauche = conteneur.querySelector('.gauche');
+                const droite = conteneur.querySelector('.droite');
+                
+                let start = 0;
+                
+                const visible = 3;
+                
+                function update() {
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].classList.toggle('gros', i === start + 1);
+                        slides[i].style.display = (i >= start && i < start + visible) ? '' : 'none';
+                    }
+
+                    if (gauche) gauche.style.visibility = start === 0 ? 'hidden' : '';
+                    if (droite) droite.style.visibility = (start + visible >= slides.length) ? 'hidden' : '';
+                }
+
+                gauche.addEventListener('click', function() {
+                    if (start > 0) { start--; update(); }
+                });
+
+                droite.addEventListener('click', function() {
+                    if (start + visible < slides.length) { start++; update(); }
+                });
+                
+                update();
+            })();
+        </script>
+        {% endblock %}
     </body>
 </html>

@@ -97,7 +97,7 @@ final class AccesAdministrateurController extends AbstractController
 
             if ($image instanceof UploadedFile) {
                 $nomFichier = uniqid() . '.' . $image->guessExtension();
-                $image->move($this->getParameter('images_directory'), $nomFichier);
+                $image->move($this->getParameter('uploads_directory'), $nomFichier);
                 $article->setImage($nomFichier);
             }
 
@@ -127,11 +127,11 @@ final class AccesAdministrateurController extends AbstractController
             if ($image instanceof UploadedFile) {
                 $ancienFichier = $article->getImage();
                 $nomFichier = uniqid() . '.' . $image->guessExtension();
-                $image->move($this->getParameter('images_directory'), $nomFichier);
+                $image->move($this->getParameter('uploads_directory'), $nomFichier);
                 $article->setImage($nomFichier);
 
                 if ($ancienFichier) {
-                    $chemin = $this->getParameter('images_directory') . '/' . $ancienFichier;
+                    $chemin = $this->getParameter('uploads_directory') . '/' . $ancienFichier;
 
                     if (file_exists($chemin)) {
                         unlink($chemin);
@@ -159,7 +159,7 @@ final class AccesAdministrateurController extends AbstractController
             $image = $article->getImage();
 
             if ($image) {
-                $chemin = $this->getParameter('images_directory') . '/' . $image;
+                $chemin = $this->getParameter('uploads_directory') . '/' . $image;
                 
                 if (file_exists($chemin)) {
                     unlink($chemin);

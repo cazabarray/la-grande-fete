@@ -9,7 +9,7 @@
         <div class="fiche-produit gap">
             <div class="image">
                 {% if article.image %}
-                    <img src="{{ asset('images/' ~ article.image) }}" alt="{{ article.nom }}">
+                    <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.nom }}">
                 {% else %}
                     <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
                 {% endif %}

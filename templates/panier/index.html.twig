@@ -14,7 +14,7 @@
                             <div class="gap">
                                 <a href="{{ path('app_boutique_article', { id: ligne.article.id }) }}" class="image">
                                     {% if ligne.article.image %}
-                                        <img src="{{ asset('images/' ~ ligne.article.image) }}" alt="{{ ligne.article.nom }}">
+                                        <img src="{{ asset('uploads/' ~ ligne.article.image) }}" alt="{{ ligne.article.nom }}">
                                     {% else %}
                                         <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
                                     {% endif %}

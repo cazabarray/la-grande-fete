@@ -1,5 +1,4 @@
 À faire
-• Voir la contrainte des vidéos dans le dossier public | Header
 • Intégrer les pictogrammes | Header
 • Adapter le style du formulaire des fiches produit | Boutique
 • Modifier le style du champ pour les types | Accès administrateur (articles)

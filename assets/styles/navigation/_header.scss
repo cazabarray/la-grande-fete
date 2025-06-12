@@ -5,10 +5,6 @@ header {
         list-style: none;
         gap: 50px;
 
-        .logotype {
-            width: fit-content;
-        }
-
         a {
             font-family: variables.$font-titre;
             font-size: 35px;
@@ -16,8 +12,16 @@ header {
             text-decoration: none;
 
             img {
-                width: 75px;
-                margin: 10px 0;
+                width: 35px;
+            }
+
+            &.logotype {
+                width: fit-content;
+
+                img {
+                    width: 75px;
+                    margin: 10px 0;
+                }
             }
         }
     }

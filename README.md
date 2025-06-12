@@ -1,6 +1,4 @@
 À faire
-• Intégrer les pictogrammes | Header
-• Adapter le style du formulaire des fiches produit | Boutique
 • Modifier le style du champ pour les types | Accès administrateur (articles)
 • Harmoniser tout le style du site | Global
 • Optimiser tout le style du site | Global

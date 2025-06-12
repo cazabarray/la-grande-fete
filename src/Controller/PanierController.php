@@ -52,7 +52,9 @@ final class PanierController extends AbstractController
             $this->addFlash('error', 'Vous devez sélectionner une taille.');
 
             return $this->redirectToRoute('app_boutique_article', ['id' => $id]);
-        } else {
+        }
+        
+        if ($article->getType()->getNom() !== 'Vêtement') {
             $taille = null;
         }
 

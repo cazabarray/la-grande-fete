@@ -20,18 +20,19 @@
                 <p>{{ article.description }}</p>
                 <p><strong>{{ article.prix }} €</strong></p>
 
-                <form action="{{ path('app_panier_ajout', { id: article.id }) }}" method="POST">
-                    {% if article.type.nom == 'Vêtement' %}
-                        <label for="taille">Taille :</label>
-                        <select name="taille" id="taille" required>
-                            <option value="">Choisir une taille</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    {% endif %}
-                    
+                {% if article.type.nom == 'Vêtement' %}
+                    <div class="gap">
+                        {% for taille in ['XS', 'S', 'M', 'L', 'XL'] %}
+                            <label class="taille">
+                                <input type="radio" name="taille" value="{{ taille }}" form="ajout-panier-{{ article.id }}" required>
+                                
+                                <p>{{ taille }}</p>
+                            </label>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form id="ajout-panier-{{ article.id }}" action="{{ path('app_panier_ajout', { id: article.id }) }}" method="POST">
                     <button type="submit">Ajouter au panier</button>
                 </form>
             </div>

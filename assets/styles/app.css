@@ -189,9 +189,6 @@ header ul {
   list-style: none;
   gap: 50px;
 }
-header ul .logotype {
-  width: fit-content;
-}
 header ul a {
   font-family: "niagara", serif;
   font-size: 35px;
@@ -199,6 +196,12 @@ header ul a {
   text-decoration: none;
 }
 header ul a img {
+  width: 35px;
+}
+header ul a.logotype {
+  width: fit-content;
+}
+header ul a.logotype img {
   width: 75px;
   margin: 10px 0;
 }
@@ -416,6 +419,32 @@ footer .conteneur a {
 }
 .boutique .fiche-produit.gap .flex h1 {
   margin: 0;
+}
+.boutique .fiche-produit.gap .flex .taille {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.boutique .fiche-produit.gap .flex .taille input[type=radio] {
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #dc353d;
+  border-radius: 25px;
+}
+.boutique .fiche-produit.gap .flex .taille input[type=radio]:hover {
+  cursor: pointer;
+}
+.boutique .fiche-produit.gap .flex .taille input[type=radio]:checked {
+  background: #dc353d;
+}
+.boutique .fiche-produit.gap .flex .taille input[type=radio]:checked + p {
+  color: white;
+}
+.boutique .fiche-produit.gap .flex .taille p {
+  position: absolute;
+  color: #dc353d;
+  pointer-events: none;
 }
 
 .support .formulaire {

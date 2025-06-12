@@ -89,6 +89,38 @@
             h1 {
                 margin: 0;
             }
+
+            .taille {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                input[type="radio"] {
+                    appearance: none;
+                    width: 40px;
+                    height: 40px;
+                    border: 2px solid variables.$rouge;
+                    border-radius: 25px;
+                    
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &:checked {
+                        background: variables.$rouge;
+
+                        + p {
+                            color: white;
+                        }
+                    }
+                }
+
+                p {
+                    position: absolute;
+                    color: variables.$rouge;
+                    pointer-events: none;
+                }
+            }
         }
     }
 }

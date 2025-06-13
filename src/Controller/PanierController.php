@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ArticleRepository;
+use App\Form\RecapitulatifForm;
 
 #[Route('/panier')]
 final class PanierController extends AbstractController
@@ -95,5 +96,44 @@ final class PanierController extends AbstractController
         }
 
         return $this->redirectToRoute('app_panier');
+    }
+
+    #[Route('/recapitulatif', name: 'app_panier_recapitulatif')]
+    public function recapitulatif(Request $request, ArticleRepository $repo): Response
+    {
+        $form = $this->createForm(RecapitulatifForm::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            // Ici, enregistrer les infos en session ou en base, puis rediriger vers HelloAsso
+            // return $this->redirectToRoute('app_checkout_helloasso');
+        }
+
+        // Récupérer le panier depuis la session
+        $panier = $request->getSession()->get('panier', []);
+        $cart = [];
+        $total = 0;
+
+        // Si tu veux afficher les articles comme dans PanierController
+        foreach ($panier as $cle => $ligne) {
+            $article = $repo->find($ligne['id']);
+            if (!$article) continue;
+            $sousTotal = $article->getPrix() * $ligne['quantite'];
+            $total += $sousTotal;
+            $cart[] = [
+                'cle' => $cle,
+                'article' => $article,
+                'taille' => $ligne['taille'],
+                'quantite' => $ligne['quantite'],
+                'sousTotal' => $sousTotal,
+            ];
+        }
+
+        return $this->render('/panier/recapitulatif.html.twig', [
+            'recapitulatifForm' => $form->createView(),
+            'cart' => $cart,
+            'total' => $total,
+        ]);
     }
 }

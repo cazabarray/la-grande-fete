@@ -6,45 +6,81 @@
     h1::after {
         border-color: variables.$rouge;
     }
-    
-    ul.gap {
-        width: 70%;
-        flex-direction: column;
-        gap: 50px;
-        list-style: none;
 
-        .gap {
-            gap: 25px;
+    .flex {
+        align-items: start;
 
-            .image {
-                height: 200px;
-                width: 25%;
-                background-color: variables.$gris;
-                padding: 25px;
-            }
+        ul.gap {
+            width: 70%;
+            flex-direction: column;
+            gap: 50px;
+            list-style: none;
 
-            .flex {
-                width: 75%;
-                align-items: start;
-                flex-direction: column;
+            .gap {
+                gap: 25px;
+
+                .image {
+                    height: 200px;
+                    width: 25%;
+                    background-color: variables.$gris;
+                    padding: 25px;
+                }
+
+                .flex {
+                    width: 75%;
+                    flex-direction: column;
+                }
             }
         }
-    }
 
-    .total {
-        height: fit-content;
-        width: 25%;
-        background-color: variables.$gris;
-        
-        p {
+        .total {
+            height: fit-content;
+            width: 25%;
+            background-color: variables.$gris;
+            
+            p {
+                text-align: center;
+                margin-top: 25px;
+            }
+
+            a {
+                margin: 10px auto 25px;
+            }
+        }
+
+        .centre {
+            width: 100%;
             text-align: center;
-            margin: 25px 0;
+            margin-top: 25px;
         }
     }
+    
 
-    .centre {
-        width: 100%;
-        text-align: center;
-        padding: 25vh 0;
+    &.recapitulatif {
+        h1 {
+            margin-bottom: 25px;
+        }
+        
+        ul.gap {
+            width: 50%;
+
+            .gap .image {
+                height: 100px;
+                width: 50%;
+            }
+        }
+
+        .total p {
+            margin-bottom: 25px;
+        }
+
+        .formulaire {
+            width: 50%;
+            margin-top: 100px;
+        }
+
+        .centre {
+            margin-top: 0;
+        }
     }
 }

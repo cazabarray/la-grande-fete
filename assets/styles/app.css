@@ -59,7 +59,7 @@ ul {
 button, .bouton {
   width: fit-content;
   border: solid 2px #dc353d;
-  background-color: white;
+  background-color: transparent;
   color: #dc353d;
   text-decoration: none;
   padding: 10px 15px;
@@ -546,39 +546,64 @@ footer .conteneur a {
 .panier h1::after {
   border-color: #dc353d;
 }
-.panier ul.gap {
+.panier .flex {
+  align-items: start;
+}
+.panier .flex ul.gap {
   width: 70%;
   flex-direction: column;
   gap: 50px;
   list-style: none;
 }
-.panier ul.gap .gap {
+.panier .flex ul.gap .gap {
   gap: 25px;
 }
-.panier ul.gap .gap .image {
+.panier .flex ul.gap .gap .image {
   height: 200px;
   width: 25%;
   background-color: #f0f0f0;
   padding: 25px;
 }
-.panier ul.gap .gap .flex {
+.panier .flex ul.gap .gap .flex {
   width: 75%;
-  align-items: start;
   flex-direction: column;
 }
-.panier .total {
+.panier .flex .total {
   height: fit-content;
   width: 25%;
   background-color: #f0f0f0;
 }
-.panier .total p {
+.panier .flex .total p {
   text-align: center;
-  margin: 25px 0;
+  margin-top: 25px;
 }
-.panier .centre {
+.panier .flex .total a {
+  margin: 10px auto 25px;
+}
+.panier .flex .centre {
   width: 100%;
   text-align: center;
-  padding: 25vh 0;
+  margin-top: 25px;
+}
+.panier.recapitulatif h1 {
+  margin-bottom: 25px;
+}
+.panier.recapitulatif ul.gap {
+  width: 50%;
+}
+.panier.recapitulatif ul.gap .gap .image {
+  height: 100px;
+  width: 50%;
+}
+.panier.recapitulatif .total p {
+  margin-bottom: 25px;
+}
+.panier.recapitulatif .formulaire {
+  width: 50%;
+  margin-top: 100px;
+}
+.panier.recapitulatif .centre {
+  margin-top: 0;
 }
 
 .acces-administrateur .gap {

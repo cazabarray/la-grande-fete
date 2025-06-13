@@ -106,7 +106,7 @@ final class AccesAdministrateurController extends AbstractController
 
             $this->addFlash('success', 'Article ajouté avec succès.');
 
-            return $this->redirectToRoute('app_administrateur_articles');
+            return $this->redirectToRoute('app_acces_administrateur_articles');
         }
 
         return $this->render('acces-administrateur/articles/form.html.twig', [
@@ -143,7 +143,7 @@ final class AccesAdministrateurController extends AbstractController
 
             $this->addFlash('success', 'Article modifié avec succès.');
 
-            return $this->redirectToRoute('app_administrateur_articles');
+            return $this->redirectToRoute('app_acces_administrateur_articles');
         }
 
         return $this->render('acces-administrateur/articles/form.html.twig', [
@@ -218,7 +218,7 @@ final class AccesAdministrateurController extends AbstractController
 
             $this->addFlash('success', 'Type modifié avec succès.');
 
-            return $this->redirectToRoute('app_administrateur_articles_types');
+            return $this->redirectToRoute('app_acces_administrateur_articles_types');
         }
 
         return $this->render('acces-administrateur/articles/types/form.html.twig', [

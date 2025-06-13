@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Récapitulatif | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="panier recapitulatif width">
+        <h1>Récapitulatif</h1>
+
+        <h2>Votre panier</h2>
+
+        <div class="flex">
+            {% if cart is not empty %}
+                <ul class="gap">
+                    {% for item in cart %}
+                        <li>
+                            <div class="gap">
+                                <a href="{{ path('app_boutique_article', { id: item.article.id }) }}" class="image">
+                                    {% if item.article.image %}
+                                        <img src="{{ asset('uploads/' ~ item.article.image) }}" alt="{{ item.article.nom }}">
+                                    {% else %}
+                                        <img src="{{ asset('images/logotype.png') }}" alt="Logotype de La Grande Fête">
+                                    {% endif %}
+                                </a>
+
+                                <div class="flex">
+                                    <p><strong>{{ item.article.nom }}</strong></p>
+
+                                    {% if item.article.type.nom == 'Vêtement' %}
+                                        <p>Taille : {{ item.taille }}</p>
+                                    {% endif %}
+                                    
+                                    <p>Quantité : {{ item.quantite }}</p>
+                                    <p><strong>{{ item.sousTotal }} €</strong></p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="total">
+                    <p>Total : {{ total }} €</p>
+                </div>
+            {% else %}
+                <p class="centre">Votre panier est vide.</p>
+            {% endif %}
+        </div>
+        
+        <div class="formulaire">
+            <h2>Vos informations</h2>
+
+            {{ form_start(recapitulatifForm) }}
+                {{ form_row(recapitulatifForm.prenom) }}
+                {{ form_row(recapitulatifForm.nom) }}
+                {{ form_row(recapitulatifForm.telephone) }}
+                <button type="submit">Passer au paiement</button>
+            {{ form_end(recapitulatifForm) }}
+        </div>
+    </div>
+{% endblock %}
